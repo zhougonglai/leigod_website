@@ -1,7 +1,5 @@
 <template lang="pug">
-main
-  header
-  section
+nuxt
 </template>
 
 <script>
