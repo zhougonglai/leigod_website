@@ -1,5 +1,6 @@
 export default {
-  target: "static",
+  // target: "static",
+  ssr: false,
   head: {
     title: "雷神加速器",
     meta: [
@@ -29,5 +30,12 @@ export default {
     },
   },
   content: {},
-  build: {},
+  build: {
+    postcss: {
+      plugins: {
+        tailwindcss: {},
+        autoprefixer: {},
+      },
+    },
+  },
 };
