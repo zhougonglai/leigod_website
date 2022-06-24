@@ -97,18 +97,19 @@ export default {
           }
         })
         .add({
-          targets: this.$refs.title2,
-          scale: [1, 0.725]
-        }, '-=500')
-        .add({
           targets: [this.$refs.circle, this.$refs.circle1, this.$refs.circle2],
           opacity: [1, 0],
           scale: [1, 0.5],
+          duration: 200,
           complete: () => {
             this.timeline.circle = false;
             this.timeline.circle1 = false;
             this.timeline.circle2 = false;
           },
+        }, '-=700')
+        .add({
+          targets: this.$refs.title2,
+          scale: [1, 0.725]
         }, '-=500')
 
       console.log(this.timeline.target);
