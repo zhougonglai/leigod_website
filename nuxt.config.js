@@ -1,3 +1,6 @@
+import LineClamp from "@tailwindcss/line-clamp";
+import Forms from "@tailwindcss/forms";
+
 export default {
   // target: "static",
   ssr: false,
@@ -27,6 +30,12 @@ export default {
   pwa: {
     manifest: {
       lang: "zh-cn",
+    },
+  },
+  tailwindcss: {
+    config: {
+      darkMode: "class",
+      plugins: [Forms, LineClamp],
     },
   },
   content: {},
