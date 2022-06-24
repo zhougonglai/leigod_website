@@ -10,13 +10,13 @@ main.flex.flex-col.items-center.min-h-screen.overflow-hidden
   section
   img.absolute.circle-1.animate-pulse(v-show="timeline.circle1" ref="circle1" src="@/assets/images/page1/circle-1.png" )
   img.absolute.circle-2.animate-pulse(v-show="timeline.circle2" ref="circle2" src="@/assets/images/page1/circle-2.png" style="animation-delay: .5s;")
-  #circle.absolute.z-10.inset-y-0(v-show="timeline.circle" ref="circle")
+  #circle.absolute.inset-y-0.z-10(v-show="timeline.circle" ref="circle")
     img.object-center.object-contain(src="@/assets/images/page1/apng/circle.png")
-  #time-1.absolute(ref="title1" v-show="timeline.title1")
+  #time-1.absolute.block(ref="title1" v-show="timeline.title1")
     img.t-1(src="@/assets/images/page1/logo-title.png")
-  #time-2.absolute.z-20(ref="title2" v-show="timeline.title2")
+  #time-2.absolute(ref="title2" v-show="timeline.title2")
     img.t-2(src="@/assets/images/page2/title2.png")
-  #bubble.rounded-full.absolute.origin-center.w-60.h-60.z-50(v-show="timeline.bubble" ref='bubble')
+  #bubble.rounded-full.absolute.w-40.h-40.z-10(v-show="timeline.bubble" ref='bubble')
 </template>
 
 <script>
@@ -72,6 +72,7 @@ export default {
           delay: 600,
           complete: () => {
             this.timeline.title1 = false;
+            this.timeline.bubble = true;
           },
         })
         .add({
@@ -83,9 +84,22 @@ export default {
           },
         }, '-=400')
         .add({
+          targets: this.$refs.bubble,
+          // scale: [1, 1.4],
+          scale: [1, Math.max(Math.ceil(window.innerWidth / 120), Math.ceil(window.innerHeight / 120)) * 1.4],
+          duration: 800,
+          easing: anime.penner.easeOutQuart,
+          begin: () => {
+            this.timeline.bubble = true;
+          },
+          complete: () => {
+            this.timeline.bubble = false;
+          }
+        })
+        .add({
           targets: this.$refs.title2,
           scale: [1, 0.725]
-        })
+        }, '-=500')
         .add({
           targets: [this.$refs.circle, this.$refs.circle1, this.$refs.circle2],
           opacity: [1, 0],
@@ -96,17 +110,6 @@ export default {
             this.timeline.circle2 = false;
           },
         }, '-=500')
-        .add({
-          targets: this.$refs.bubble,
-          scale: [1, Math.max(Math.ceil(window.innerWidth / 120), Math.ceil(window.innerHeight / 120)) * 1.4],
-          easing: anime.penner.easeOutCubic,
-          begin: () => {
-            this.timeline.bubble = true;
-          },
-          complete: () => {
-            this.timeline.bubble = false;
-          }
-        }, '-=600')
 
       console.log(this.timeline.target);
     }
@@ -162,7 +165,7 @@ main {
 
 #bubble {
   box-shadow: 0 0 1.25vw 1.25vw rgba(white, 0.7) inset;
-  left: calc(50% - 120px);
-  top: calc(50% - 120px + var(--top-param));
+  left: calc(50% - 80px);
+  top: calc(50% - 80px + var(--top-param));
 }
 </style>
