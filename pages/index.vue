@@ -14,7 +14,7 @@ main.flex.flex-col.items-center.min-h-screen.overflow-hidden
     img.object-center.object-contain(src="@/assets/images/page1/apng/circle.png")
   #time-1.absolute(ref="title1" v-show="timeline.title1")
     img.t-1(src="@/assets/images/page1/logo-title.png")
-  #time-2.absolute(ref="title2" v-show="timeline.title2")
+  #time-2.absolute.z-20(ref="title2" v-show="timeline.title2")
     img.t-2(src="@/assets/images/page2/title2.png")
   #bubble.rounded-full.absolute.origin-center.w-60.h-60.z-50(v-show="timeline.bubble" ref='bubble')
 </template>
@@ -95,7 +95,7 @@ export default {
             this.timeline.circle1 = false;
             this.timeline.circle2 = false;
           },
-        })
+        }, '-=500')
         .add({
           targets: this.$refs.bubble,
           scale: [1, Math.max(Math.ceil(window.innerWidth / 120), Math.ceil(window.innerHeight / 120)) * 1.4],
@@ -106,7 +106,7 @@ export default {
           complete: () => {
             this.timeline.bubble = false;
           }
-        })
+        }, '-=600')
 
       console.log(this.timeline.target);
     }
