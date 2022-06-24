@@ -5,14 +5,16 @@ main.flex.flex-col.items-center.min-h-screen(class="dark:bg-gray-900 bg-white")
       nuxt-link.py-5(to="/")
         img(src="~/assets/images/logo.png" alt="logo" width="164" height="42")
   section
-  dialog.relative.flex.items-center.justify-center(ref="anime" :inert="inert")
-    .circle.perspective.absolute.z-10
+  dialog.relative.flex.items-center.justify-center.overflow-hidden(ref="anime")
+    #circle.absolute.z-10.transform(ref="circle" style="opacity: 0;")
       img(src="@/assets/images/circle.gif")
-    .time-1.perspective.absolute
+    #time-1.absolute.transform(ref="title1" style="opacity: 0;")
       img.t-1.scale-150.transform(src="@/assets/images/logo.png")
 </template>
 
 <script>
+import anime from 'animejs';
+
 export default {
   name: 'IndexPage',
   data() {
@@ -25,28 +27,35 @@ export default {
   },
   methods: {
     async runAnime() {
-      this.inert = true;
       this.$refs.anime.showModal();
+      const circle = anime({
+        targets: this.$refs.circle,
+        duration: 650,
+        opacity: [0, 1]
+      })
+      const t1 = anime.timeline({
+        targets: this.$refs.title1,
+        duration: 650,
+        delay: 500,
+        endDelay: 400,
+        easing: anime.penner.easeInOutCubic
+      })
+      t1.add({
+        translateX: [-250, 0],
+        opacity: [0, 1],
+      }).add({
+        translateX: 0,
+        delay: 600
+      }).add({
+        translateX: -250,
+        opacity: [1, 0]
+      })
+      console.log(t1);
     }
   }
 }
 </script>
 <style lang="scss" scoped>
-@keyframes z {
-  from {
-    transform: translateX(0) translateY(0) translateZ(0) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scaleX(1) scaleY(1) scaleZ(1);
-  }
-
-  to {
-    transform: translateX(0) translateY(0) translateZ(0) rotateX(0deg) rotateY(0deg) rotateZ(360deg) scaleX(1) scaleY(1) scaleZ(1);
-  }
-}
-
-main {
-  transform-style: preserve-3d;
-  perspective: 1000px;
-}
-
 dialog {
   &:not([open]) {
     pointer-events: none;
@@ -54,7 +63,6 @@ dialog {
   }
 
   background: transparent;
-  transform: translateZ(-1000px);
   transform-style: preserve-3d;
   transition-property: all;
   position: fixed;
@@ -66,33 +74,12 @@ dialog {
   width: 100%;
   height: 100%;
   z-index: 9;
+  transition: opacity 2s 2s ease-in-out;
 
   &::backdrop {
     transition: backdrop-filter .5s ease;
     backdrop-filter: blur(15px);
     z-index: 9;
-  }
-
-  .perspective {
-    transform-style: preserve-3d;
-    transition-property: all;
-    backface-visibility: visible;
-
-    img {
-      transform-style: preserve-3d;
-    }
-  }
-
-  .circle {}
-
-  .time-1 {
-    left: 50%;
-    transform: translateX(-50%) translateZ(-20px);
-  }
-
-  .z {
-    animation: z 5s linear 0s infinite;
-    transform-style: preserve-3d;
   }
 }
 </style>
