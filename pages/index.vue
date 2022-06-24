@@ -6,8 +6,8 @@ main.flex.flex-col.items-center.min-h-screen(class="dark:bg-gray-900 bg-white")
         img(src="~/assets/images/logo.png" alt="logo" width="164" height="42")
   section
   dialog.relative.flex.items-center.justify-center(ref="anime" :inert="inert")
-    .circle.perspective.absolute
-      img.z(src="@/assets/images/ttround.png")
+    .circle.perspective.absolute.z-10
+      img(src="@/assets/images/circle.gif")
     .time-1.perspective.absolute
       img.t-1.scale-150.transform(src="@/assets/images/logo.png")
 </template>
@@ -80,17 +80,10 @@ dialog {
 
     img {
       transform-style: preserve-3d;
-      transition-property: all;
-      backface-visibility: visible;
     }
   }
 
-  .circle {
-    width: 679px;
-    height: 679px;
-    left: 50%;
-    transform: translateX(-50%) translateZ(-20px) rotateY(62deg);
-  }
+  .circle {}
 
   .time-1 {
     left: 50%;
