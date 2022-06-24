@@ -34,7 +34,6 @@ export default {
   },
   tailwindcss: {
     config: {
-      darkMode: "class",
       plugins: [Forms, LineClamp],
     },
   },
