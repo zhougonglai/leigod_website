@@ -1,5 +1,5 @@
 <template lang="pug">
-nuxt()
+nuxt.dark
 </template>
 
 <script>
@@ -7,7 +7,7 @@ export default {
   name: 'DefaultLayout',
   data() {
     return {
-      dark: false
+      dark: true
     }
   },
   created() {
@@ -18,11 +18,12 @@ export default {
     }
   },
   mounted() {
-    if (this.$root.theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
+    // document.documentElement.classList.add('dark');
+    // if (this.$root.theme === 'dark') {
+    //   document.documentElement.classList.add('dark');
+    // } else {
+    //   document.documentElement.classList.remove('dark');
+    // }
   },
   methods: {
     themeType(type) {

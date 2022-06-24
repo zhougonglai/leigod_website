@@ -6,10 +6,12 @@ main.flex.flex-col.items-center.min-h-screen(class="dark:bg-gray-900 bg-white")
         img(src="~/assets/images/logo.png" alt="logo" width="164" height="42")
   section
   dialog.relative.flex.items-center.justify-center.overflow-hidden(ref="anime")
-    #circle.absolute.z-10.transform(ref="circle" style="opacity: 0;")
+    #circle.absolute.z-10(ref="circle" style="opacity: 0;")
       img(src="@/assets/images/circle.gif")
-    #time-1.absolute.transform(ref="title1" style="opacity: 0;")
+    #time-1.absolute(ref="title1" style="opacity: 0;")
       img.t-1.scale-150.transform(src="@/assets/images/logo.png")
+    #time-2.absolute(ref="title2" style="opacity: 0;")
+      img.t-2(src="@/assets/images/better_title.png")
 </template>
 
 <script>
@@ -36,20 +38,25 @@ export default {
       const t1 = anime.timeline({
         targets: this.$refs.title1,
         duration: 650,
-        delay: 500,
-        endDelay: 400,
+        delay: 250,
         easing: anime.penner.easeInOutCubic
       })
       t1.add({
         translateX: [-250, 0],
         opacity: [0, 1],
+        endDelay: 300,
       }).add({
         translateX: 0,
-        delay: 600
       }).add({
-        translateX: -250,
-        opacity: [1, 0]
-      })
+        translateX: [0, 250],
+        opacity: [1, 0],
+        delay: 0
+      }).add({
+        targets: this.$refs.title2,
+        translateX: [-250, 0],
+        opacity: [0, 1],
+        delay: 0
+      }, '-=400')
       console.log(t1);
     }
   }
