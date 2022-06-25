@@ -6,7 +6,7 @@ main.flex.flex-col.items-center.h-screen.overflow-hidden
         img(src="~/assets/images/page1/logo.png" alt="logo" width="148" height="41")
     .flex-1
     nav.inline-flex.space-x-10
-      button.text-white.opacity-60(class="hover:opacity-100" v-if="timeline.target" @click="timeline.target.restart") 重播
+      button.text-white.opacity-60(class="hover:opacity-100" v-if="timeline.target" @click="resetAnime") 重播
       nuxt-link.text-white.opacity-60.inline-flex.items-center(class="hover:opacity-100" to="/") 首页
       button.text-white.opacity-60(class="hover:opacity-100") 加速盒
       button.text-white.opacity-60(class="hover:opacity-100") 活动
@@ -22,7 +22,7 @@ main.flex.flex-col.items-center.h-screen.overflow-hidden
     #bubble.rounded-full.absolute.w-40.h-40.z-10(v-show="timeline.bubble" ref='bubble')
     #bg.absolute.inset-x-0.bottom-0(v-show="timeline.bg" ref="bg")
       img.bg(src="@/assets/images/page3/Apng/3–1_00000_iSpt.png")
-      img.light.absolute.top-0(src="@/assets/images/page3/light.png" class="left-1/2 -translate-x-1/2")
+      img.light.absolute.top-0.transform(src="@/assets/images/page3/light.png" class="left-1/2 -translate-x-1/2")
     #logo.flex-1.flex.flex-col.flex-col-reverse(v-show="timeline.logo" ref="logo")
       img.logo-img(src="@/assets/images/page3/logo.png")
     #time-2.my-10(ref="title2" v-show="timeline.title2")
@@ -68,15 +68,27 @@ export default {
     this.runAnime();
   },
   methods: {
+    resetAnime() {
+      this.timeline.circle = false;
+      this.timeline.circle1 = false;
+      this.timeline.circle2 = false;
+      this.timeline.title1 = false;
+      this.timeline.title2 = false;
+      this.timeline.bubble = false;
+      this.timeline.logo = false;
+      this.timeline.bg = false;
+      this.timeline.download = false;
+      this.runAnime();
+    },
     async runAnime() {
       this.timeline.target = anime.timeline({
         duration: 600,
         easing: anime.penner.easeInOutCubic
       })
       this.timeline.target.add({
-        targets: [this.$refs.circle],
+        targets: [this.$refs.circle, this.$refs.circle1, this.$refs.circle2],
         opacity: [0, 1],
-        endDelay: 0,
+        scale: [0.7, 1],
         begin: () => {
           this.timeline.circle = true;
           this.timeline.circle1 = true;
@@ -110,57 +122,59 @@ export default {
             this.timeline.title2 = true;
           },
         }, '-=400')
-        .add({
-          targets: this.$refs.bubble,
-          // scale: [1, 1.4],
-          scale: [1, Math.max(Math.ceil(window.innerWidth / 120), Math.ceil(window.innerHeight / 120)) * 1.4],
-          duration: 800,
-          easing: anime.penner.easeOutQuart,
-          begin: () => {
-            this.timeline.bubble = true;
-          },
-          complete: () => {
-            this.timeline.bubble = false;
-          }
-        })
-        .add({
-          targets: [this.$refs.circle, this.$refs.circle1, this.$refs.circle2],
-          opacity: [1, 0],
-          scale: [1, 0.5],
-          duration: 200,
-          complete: () => {
-            this.timeline.circle = false;
-            this.timeline.circle1 = false;
-            this.timeline.circle2 = false;
-          },
-        }, '-=700')
-        .add({
-          targets: this.$refs.title2,
-          scale: [1, 0.725]
-        }, '-=500')
-        .add({
-          targets: this.$refs.logo,
-          opacity: [0, 1],
-          translateY: [100, 0],
-          begin: () => {
-            this.timeline.logo = true;
-          }
-        }, '-=500')
-        .add({
-          targets: this.$refs.download,
-          opacity: [0, 1],
-          translateY: [-100, 0],
-          begin: () => {
-            this.timeline.download = true
-          }
-        }, '-=600')
-        .add({
-          targets: this.$refs.bg,
-          opacity: [0, 1],
-          begin: () => {
-            this.timeline.bg = true;
-          }
-        }, '-=700')
+
+      await this.timeline.target.finished
+
+      anime({
+        targets: this.$refs.bubble,
+        scale: [1, Math.max(Math.ceil(window.innerWidth / 120), Math.ceil(window.innerHeight / 120)) * 1.4],
+        duration: 800,
+        easing: anime.penner.easeOutQuart,
+        begin: () => {
+          this.timeline.bubble = true;
+        },
+        complete: () => {
+          this.timeline.bubble = false;
+        }
+      })
+      anime({
+        targets: [this.$refs.circle, this.$refs.circle1, this.$refs.circle2],
+        opacity: [1, 0],
+        scale: [1, 0.7],
+        duration: 200,
+        complete: () => {
+          this.timeline.circle = false;
+          this.timeline.circle1 = false;
+          this.timeline.circle2 = false;
+        },
+      })
+      anime({
+        targets: this.$refs.title2,
+        scale: [1, 0.725]
+      })
+      anime({
+        targets: this.$refs.logo,
+        opacity: [0, 1],
+        translateY: [100, 0],
+        begin: () => {
+          this.timeline.logo = true;
+        }
+      })
+      anime({
+        targets: this.$refs.download,
+        opacity: [0, 1],
+        translateY: [-100, 0],
+        begin: () => {
+          this.timeline.download = true
+        }
+      })
+      anime({
+        targets: this.$refs.bg,
+        opacity: [0, 1],
+        begin: () => {
+          this.timeline.bg = true;
+        }
+      })
 
       console.log(this.timeline.target);
     }
