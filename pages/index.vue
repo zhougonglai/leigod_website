@@ -1,22 +1,31 @@
 <template lang="pug">
-main.flex.flex-col.items-center.min-h-screen.overflow-hidden
-  header.container.flex
+main.flex.flex-col.items-center.h-screen.overflow-hidden
+  header.container.flex.h-20.absolute.z-10
     nav.inline-flex
       nuxt-link.py-5(to="/")
         img(src="~/assets/images/page1/logo.png" alt="logo" width="148" height="41")
     .flex-1
-    nav.inline-flex
-      button.text-white(v-if="timeline.target" @click="timeline.target.restart") 首页
-  section
-  img.absolute.circle-1.animate-pulse(v-show="timeline.circle1" ref="circle1" src="@/assets/images/page1/circle-1.png" )
-  img.absolute.circle-2.animate-pulse(v-show="timeline.circle2" ref="circle2" src="@/assets/images/page1/circle-2.png" style="animation-delay: .5s;")
-  #circle.absolute.inset-y-0.z-10(v-show="timeline.circle" ref="circle")
-    img.object-center.object-contain(src="@/assets/images/page1/apng/circle.png")
-  #time-1.absolute.block(ref="title1" v-show="timeline.title1")
-    img.t-1(src="@/assets/images/page1/logo-title.png")
-  #time-2.absolute(ref="title2" v-show="timeline.title2")
-    img.t-2(src="@/assets/images/page2/title2.png")
-  #bubble.rounded-full.absolute.w-40.h-40.z-10(v-show="timeline.bubble" ref='bubble')
+    nav.inline-flex.space-x-10
+      button.text-white(v-if="timeline.target" @click="timeline.target.restart") 重播
+      button.text-white 首页
+      button.text-white() 加速盒
+      button.text-white() 活动
+      button.text-white() 帮助中心
+      button.text-white() 网吧商家版
+  section.absolute.inset-0.flex.items-center.justify-center.flex-col.h-screen.w-screen
+    img.absolute.circle-1.animate-pulse(v-show="timeline.circle1" ref="circle1" src="@/assets/images/page1/circle-1.png" )
+    img.absolute.circle-2.animate-pulse(v-show="timeline.circle2" ref="circle2" src="@/assets/images/page1/circle-2.png" style="animation-delay: .5s;")
+    #circle.absolute.inset-y-0.z-10(v-show="timeline.circle" ref="circle")
+      img.object-center.object-contain(src="@/assets/images/page1/apng/circle.png")
+    #time-1.absolute(ref="title1" v-show="timeline.title1")
+      img.t-1(src="@/assets/images/page1/logo-title.png")
+    #bubble.rounded-full.absolute.w-40.h-40.z-10(v-show="timeline.bubble" ref='bubble')
+    #bg.absolute.inset-x-0.bottom-0(v-show="timeline.bg" ref="bg")
+      img.bg(src="@/assets/images/page3/Apng/3–1_00000_iSpt.png")
+    #logo(v-show="timeline.logo" ref="logo")
+      img.logo-img(src="@/assets/images/page3/logo.png")
+    #time-2.relative.my-20(ref="title2" v-show="timeline.title2")
+      img.t-2(src="@/assets/images/page2/title2.png")
 </template>
 
 <script>
@@ -33,6 +42,8 @@ export default {
         title1: false,
         title2: false,
         bubble: false,
+        logo: false,
+        bg: false,
         target: '',
       },
     }
@@ -111,6 +122,21 @@ export default {
           targets: this.$refs.title2,
           scale: [1, 0.725]
         }, '-=500')
+        .add({
+          targets: this.$refs.logo,
+          opacity: [0, 1],
+          translateY: [100, 0],
+          begin: () => {
+            this.timeline.logo = true;
+          }
+        }, '-=500')
+        .add({
+          targets: this.$refs.bg,
+          opacity: [0, 1],
+          begin: () => {
+            this.timeline.bg = true;
+          }
+        }, '-=700')
 
       console.log(this.timeline.target);
     }
@@ -119,8 +145,12 @@ export default {
 </script>
 <style lang="scss" scoped>
 main {
-  --top-param: 30px;
+  --top-param: 0px;
   background: linear-gradient(180deg, #101010 0%, #2E2E2E 100%);
+
+  section {
+    min-height: 900px;
+  }
 }
 
 @keyframes pulse {
@@ -160,8 +190,8 @@ main {
 }
 
 #time-2 {
-  left: calc(50% - 598px);
-  top: calc(50% - 88px + var(--top-param));
+  // left: calc(50% - 598px);
+  // top: max(calc(50% - 88px + var(--top-param)), 400px);
 }
 
 #bubble {
