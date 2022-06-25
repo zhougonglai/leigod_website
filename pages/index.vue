@@ -6,12 +6,12 @@ main.flex.flex-col.items-center.h-screen.overflow-hidden
         img(src="~/assets/images/page1/logo.png" alt="logo" width="148" height="41")
     .flex-1
     nav.inline-flex.space-x-10
-      button.text-white(v-if="timeline.target" @click="timeline.target.restart") 重播
-      button.text-white 首页
-      button.text-white() 加速盒
-      button.text-white() 活动
-      button.text-white() 帮助中心
-      button.text-white() 网吧商家版
+      button.text-white.opacity-60(class="hover:opacity-100" v-if="timeline.target" @click="timeline.target.restart") 重播
+      button.text-white.opacity-60(class="hover:opacity-100") 首页
+      button.text-white.opacity-60(class="hover:opacity-100") 加速盒
+      button.text-white.opacity-60(class="hover:opacity-100") 活动
+      button.text-white.opacity-60(class="hover:opacity-100") 帮助中心
+      button.text-white.opacity-60(class="hover:opacity-100") 网吧商家版
   section.absolute.inset-0.flex.items-center.justify-center.flex-col.h-screen.w-screen
     img.absolute.circle-1.animate-pulse(v-show="timeline.circle1" ref="circle1" src="@/assets/images/page1/circle-1.png" )
     img.absolute.circle-2.animate-pulse(v-show="timeline.circle2" ref="circle2" src="@/assets/images/page1/circle-2.png" style="animation-delay: .5s;")
@@ -22,10 +22,20 @@ main.flex.flex-col.items-center.h-screen.overflow-hidden
     #bubble.rounded-full.absolute.w-40.h-40.z-10(v-show="timeline.bubble" ref='bubble')
     #bg.absolute.inset-x-0.bottom-0(v-show="timeline.bg" ref="bg")
       img.bg(src="@/assets/images/page3/Apng/3–1_00000_iSpt.png")
-    #logo(v-show="timeline.logo" ref="logo")
+      img.light.absolute.top-0(src="@/assets/images/page3/light.png" class="left-1/2 -translate-x-1/2")
+    #logo.flex-1.flex.flex-col.flex-col-reverse(v-show="timeline.logo" ref="logo")
       img.logo-img(src="@/assets/images/page3/logo.png")
-    #time-2.relative.my-20(ref="title2" v-show="timeline.title2")
+    #time-2.my-20(ref="title2" v-show="timeline.title2")
       img.t-2(src="@/assets/images/page2/title2.png")
+    #download.flex-1(ref="download" v-show="timeline.download")
+      .actions
+        button.btn
+          img.icon(src="@/assets/images/page3/icon-1.png")
+          | 全新PC8.0下载
+        button.btn
+          img.icon(src="@/assets/images/page3/icon-2.png")
+          | 移动版
+
 </template>
 
 <script>
@@ -44,6 +54,7 @@ export default {
         bubble: false,
         logo: false,
         bg: false,
+        download: false,
         target: '',
       },
     }
@@ -130,6 +141,14 @@ export default {
             this.timeline.logo = true;
           }
         }, '-=500')
+        .add({
+          targets: this.$refs.download,
+          opacity: [0, 1],
+          translateY: [-100, 0],
+          begin: () => {
+            this.timeline.download = true
+          }
+        }, '-=600')
         .add({
           targets: this.$refs.bg,
           opacity: [0, 1],
