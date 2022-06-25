@@ -7,7 +7,7 @@ main.flex.flex-col.items-center.h-screen.overflow-hidden
     .flex-1
     nav.inline-flex.space-x-10
       button.text-white.opacity-60(class="hover:opacity-100" v-if="timeline.target" @click="timeline.target.restart") 重播
-      button.text-white.opacity-60(class="hover:opacity-100") 首页
+      nuxt-link.text-white.opacity-60.inline-flex.items-center(class="hover:opacity-100" to="/") 首页
       button.text-white.opacity-60(class="hover:opacity-100") 加速盒
       button.text-white.opacity-60(class="hover:opacity-100") 活动
       button.text-white.opacity-60(class="hover:opacity-100") 帮助中心
@@ -25,16 +25,21 @@ main.flex.flex-col.items-center.h-screen.overflow-hidden
       img.light.absolute.top-0(src="@/assets/images/page3/light.png" class="left-1/2 -translate-x-1/2")
     #logo.flex-1.flex.flex-col.flex-col-reverse(v-show="timeline.logo" ref="logo")
       img.logo-img(src="@/assets/images/page3/logo.png")
-    #time-2.my-20(ref="title2" v-show="timeline.title2")
+    #time-2.my-10(ref="title2" v-show="timeline.title2")
       img.t-2(src="@/assets/images/page2/title2.png")
-    #download.flex-1(ref="download" v-show="timeline.download")
-      .actions
-        button.btn
-          img.icon(src="@/assets/images/page3/icon-1.png")
+    #download.flex-1.flex.flex-col(ref="download" v-show="timeline.download")
+      .actions.flex.text-white
+        button.btn.pc.bg-no-repeat.flex.items-center.justify-center.text-xl
+          img.icon.mr-5(src="@/assets/images/page3/icon-1.png")
           | 全新PC8.0下载
-        button.btn
-          img.icon(src="@/assets/images/page3/icon-2.png")
+        button.btn.mobile.flex.items-center.justify-center.text-xl(class="-ml-2")
+          img.icon.mr-5(src="@/assets/images/page3/icon-2.png")
           | 移动版
+      .flex-1.flex.items-center.justify-center
+        nuxt-link.prod.text-xl.inline-flex.items-center.justify-center(to="/download")
+          | 产品介绍
+          span.mx-2.text-gray-500 —
+          img.ml-2.animate-swing(src="@/assets/images/page3/arrow-right.png")
 
 </template>
 
@@ -172,6 +177,23 @@ main {
   }
 }
 
+@keyframes swing {
+
+  0%,
+  50%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(5px);
+  }
+
+  75% {
+    transform: translateX(-5px);
+  }
+}
+
 @keyframes pulse {
 
   0%,
@@ -186,6 +208,10 @@ main {
 
 .animate-pulse {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-swing {
+  animation: swing 1.6s linear infinite;
 }
 
 .circle-1 {
@@ -217,5 +243,33 @@ main {
   box-shadow: 0 0 1.25vw 1.25vw rgba(white, 0.7) inset;
   left: calc(50% - 80px);
   top: calc(50% - 80px + var(--top-param));
+}
+
+#download {
+  .actions {
+
+    button {
+      &.pc {
+        background-image: url('@/assets/images/page3/btn-pc.png');
+        width: 325px;
+        height: 83px;
+      }
+
+      &.mobile {
+        background-image: url('@/assets/images/page3/btn-mobile.png');
+        width: 325px;
+        height: 83px;
+      }
+    }
+  }
+
+  .prod {
+    width: 220px;
+    height: 60px;
+    color: #CEFFD0;
+    border-radius: 20px;
+    border: 1px solid #CEFFD0;
+    overflow: hidden;
+  }
 }
 </style>
