@@ -2,16 +2,24 @@
 main.flex.flex-col.items-center.h-screen.overflow-hidden
   header.container.flex.h-20.absolute.z-10
     nav.inline-flex
-      nuxt-link.py-5(to="/")
-        img(src="~/assets/images/page1/logo.png" alt="logo" width="148" height="41")
+      transition(
+        enter-class="transform scale-0"
+        enter-active-class="transition"
+        enter-to-class="transform scale-1"
+        leave-class="transform scale-1"
+        leave-active-class="transition"
+        leave-to-class="transform scale-0"
+      )
+        nuxt-link.py-5(to="/" v-show="timeline.logo")
+          img(src="~/assets/images/page1/logo.png" alt="logo" width="148" height="41")
     .flex-1
-    nav.inline-flex.space-x-10
-      button.text-white.opacity-60(class="hover:opacity-100" v-if="timeline.target" @click="resetAnime") 重播
-      nuxt-link.text-white.opacity-60.inline-flex.items-center(class="hover:opacity-100" to="/") 首页
-      button.text-white.opacity-60(class="hover:opacity-100") 加速盒
-      button.text-white.opacity-60(class="hover:opacity-100") 活动
-      button.text-white.opacity-60(class="hover:opacity-100") 帮助中心
-      button.text-white.opacity-60(class="hover:opacity-100") 网吧商家版
+    nav.inline-flex(ref="nav" v-show="timeline.nav")
+      button.nav-link.w-32.text-center.px-5.text-white.opacity-60(class="hover:opacity-100" v-if="timeline.target" @click="resetAnime") 重播
+      nuxt-link.nav-link.w-32.text-white.opacity-60.inline-flex.items-center.justify-center(class="hover:opacity-100" active-class="opacity-100" to="/") 首页
+      button.nav-link.w-32.text-center.px-5.text-white.opacity-60(class="hover:opacity-100") 加速盒
+      button.nav-link.w-32.text-center.px-5.text-white.opacity-60(class="hover:opacity-100") 活动
+      button.nav-link.w-32.text-center.px-5.text-white.opacity-60(class="hover:opacity-100") 帮助中心
+      button.nav-link.w-32.text-center.px-5.text-white.opacity-60(class="hover:opacity-100") 网吧商家版
   section.absolute.inset-0.flex.items-center.justify-center.flex-col.h-screen.w-screen
     img.absolute.circle-1.animate-pulse(v-show="timeline.circle1" ref="circle1" src="@/assets/images/page1/circle-1.png" )
     img.absolute.circle-2.animate-pulse(v-show="timeline.circle2" ref="circle2" src="@/assets/images/page1/circle-2.png" style="animation-delay: .5s;")
@@ -29,22 +37,35 @@ main.flex.flex-col.items-center.h-screen.overflow-hidden
       img.t-2(src="@/assets/images/page2/title2.png")
     #download.flex-1.flex.flex-col(ref="download" v-show="timeline.download")
       .actions.flex.text-white
-        button.btn.pc.bg-no-repeat.flex.items-center.justify-center.text-xl
+        a.btn.pc.bg-no-repeat.flex.items-center.justify-center.text-xl(rel="nofollow" v-if="download.pc" :href="download.pc" title="雷神加速器抢先版下载" download target="_blank")
           img.icon.mr-5(src="@/assets/images/page3/icon-1.png")
           | 全新PC8.0下载
-        button.btn.mobile.flex.items-center.justify-center.text-xl(class="-ml-2")
+        button.btn.mobile.flex.items-center.justify-center.text-xl.relative(class="-ml-2" @mouseenter="showPopover(true)" @mouseleave="showPopover(false)")
           img.icon.mr-5(src="@/assets/images/page3/icon-2.png")
           | 移动版
+          transition(
+            enter-class="transform scale-0"
+            enter-active-class="transition"
+            enter-to-class="transform scale-1"
+            leave-class="transform scale-1"
+            leave-active-class="transition"
+            leave-to-class="transform scale-0"
+          )
+            .popover.absolute(v-show="download.popover" v-if="download.mobile")
+              .popover-qrcode
+              .popover-actions
+                a(:href="download.mobile.find(t => t.sub_title === 'ios')" target="_blank") Apple Store
       .flex-1.flex.items-center.justify-center
         nuxt-link.prod.text-xl.inline-flex.items-center.justify-center(to="/download")
           | 产品介绍
-          span.mx-2.text-gray-500 —
+          span.mx-4.text-gray-500 —
           img.ml-2.animate-swing(src="@/assets/images/page3/arrow-right.png")
 
 </template>
 
 <script>
 import anime from 'animejs';
+import { mapActions } from 'vuex'
 
 export default {
   name: 'IndexPage',
@@ -58,16 +79,25 @@ export default {
         title2: false,
         bubble: false,
         logo: false,
+        nav: false,
         bg: false,
         download: false,
         target: '',
       },
+      download: {
+        pc: '',
+        mobile: '',
+        popover: false,
+        timer: 0
+      }
     }
   },
   mounted() {
     this.runAnime();
+    this.getDownloadAct();
   },
   methods: {
+    ...mapActions(['getDownload']),
     resetAnime() {
       this.timeline.circle = false;
       this.timeline.circle1 = false;
@@ -76,6 +106,7 @@ export default {
       this.timeline.title2 = false;
       this.timeline.bubble = false;
       this.timeline.logo = false;
+      this.timeline.nav = false;
       this.timeline.bg = false;
       this.timeline.download = false;
       this.runAnime();
@@ -121,14 +152,26 @@ export default {
           begin: () => {
             this.timeline.title2 = true;
           },
-        }, '-=400')
+        }, '-=300')
 
       await this.timeline.target.finished
 
       anime({
+        targets: [this.$refs.circle, this.$refs.circle1, this.$refs.circle2],
+        opacity: [1, 0],
+        scale: [1, 0.7],
+        duration: 300,
+        complete: () => {
+          this.timeline.circle = false;
+          this.timeline.circle1 = false;
+          this.timeline.circle2 = false;
+        },
+      })
+
+      anime({
         targets: this.$refs.bubble,
         scale: [1, Math.max(Math.ceil(window.innerWidth / 120), Math.ceil(window.innerHeight / 120)) * 1.4],
-        duration: 800,
+        duration: 1000,
         easing: anime.penner.easeOutQuart,
         begin: () => {
           this.timeline.bubble = true;
@@ -136,17 +179,6 @@ export default {
         complete: () => {
           this.timeline.bubble = false;
         }
-      })
-      anime({
-        targets: [this.$refs.circle, this.$refs.circle1, this.$refs.circle2],
-        opacity: [1, 0],
-        scale: [1, 0.7],
-        duration: 200,
-        complete: () => {
-          this.timeline.circle = false;
-          this.timeline.circle1 = false;
-          this.timeline.circle2 = false;
-        },
       })
       anime({
         targets: this.$refs.title2,
@@ -158,6 +190,14 @@ export default {
         translateY: [100, 0],
         begin: () => {
           this.timeline.logo = true;
+        }
+      })
+      anime({
+        targets: this.$refs.nav.children,
+        translateY: [-100, 0],
+        delay: anime.stagger(100),
+        begin: () => {
+          this.timeline.nav = true;
         }
       })
       anime({
@@ -176,7 +216,26 @@ export default {
         }
       })
 
-      console.log(this.timeline.target);
+      console.log(this.timeline.target, this.$refs.nav);
+    },
+    async getDownloadAct() {
+      this.download.mobile = await this.getDownload({
+        group: 'nn-download'
+      });
+      const { leigod } = await this.$axios.$get('/config.json', {
+        baseURL: process.env.BASE_URL
+      })
+      this.download.pc = leigod.windows.download_url
+    },
+    showPopover(status = true) {
+      if (!status) {
+        if (this.download.timer) clearTimeout(this.download.timer);
+        this.download.timer = setTimeout(() => {
+          this.download.popover = false;
+          this.download.timer = 0;
+        }, 1000);
+      }
+      this.download.popover = true;
     }
   }
 }
@@ -248,6 +307,10 @@ main {
   top: calc(50% - 136px + var(--top-param));
 }
 
+#logo {
+  min-height: 400px;
+}
+
 #time-2 {
   // left: calc(50% - 598px);
   // top: max(calc(50% - 88px + var(--top-param)), 400px);
@@ -260,19 +323,33 @@ main {
 }
 
 #download {
+  min-height: 400px;
+
   .actions {
 
-    button {
+    .btn {
       &.pc {
         background-image: url('@/assets/images/page3/btn-pc.png');
         width: 325px;
         height: 83px;
+        transition: all .2s ease-in-out;
+        filter: drop-shadow(0px 0px 0px #27CB8E);
+
+        &:hover {
+          filter: drop-shadow(0px 4px 6px #27CB8E);
+        }
       }
 
       &.mobile {
         background-image: url('@/assets/images/page3/btn-mobile.png');
         width: 325px;
         height: 83px;
+        transition: all .2s ease-in-out;
+        filter: drop-shadow(0px 0px 0px #646464);
+
+        &:hover {
+          filter: drop-shadow(0px 4px 6px #646464);
+        }
       }
     }
   }
@@ -282,7 +359,7 @@ main {
     height: 60px;
     color: #CEFFD0;
     border-radius: 20px;
-    border: 1px solid #CEFFD0;
+    border: 2px solid #CEFFD0;
     overflow: hidden;
   }
 }

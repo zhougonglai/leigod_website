@@ -19,11 +19,6 @@ export default {
   },
   mounted() {
     document.documentElement.classList.add('dark');
-    // if (this.$root.theme === 'dark') {
-    //   document.documentElement.classList.add('dark');
-    // } else {
-    //   document.documentElement.classList.remove('dark');
-    // }
   },
   methods: {
     themeType(type) {

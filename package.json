@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vercel dev",
+    "preview": "vercel",
+    "prod": "vercel --prod",
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",

@@ -19,13 +19,24 @@ export default {
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
   },
+  env: {
+    BASE_URL: process.env.BASE_URL,
+    API_URL: process.env.API_URL,
+    IMG_URL: process.env.IMG_URL,
+    FILE_URL: process.env.FILE_URL,
+  },
   css: [],
   plugins: [],
   components: true,
   buildModules: ["@nuxtjs/tailwindcss"],
   modules: ["@nuxtjs/axios", "@nuxtjs/pwa", "@nuxt/content"],
   axios: {
-    baseURL: "/",
+    baseURL: process.env.API_URL,
+  },
+  publicRuntimeConfig: {
+    axios: {
+      browserBaseURL: process.env.API_URL,
+    },
   },
   pwa: {
     manifest: {
