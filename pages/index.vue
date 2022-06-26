@@ -44,18 +44,26 @@ main.flex.flex-col.items-center.h-screen.overflow-hidden
           img.icon.mr-5(src="@/assets/images/page3/icon-2.png")
           | 移动版
           transition(
-            enter-class="transform scale-0"
-            enter-active-class="transition"
-            enter-to-class="transform scale-1"
-            leave-class="transform scale-1"
-            leave-active-class="transition"
-            leave-to-class="transform scale-0"
+            enter-class="scale-0"
+            enter-active-class="transition transform duration-300 origin-top"
+            enter-to-class="scale-1"
+            leave-class=" scale-1"
+            leave-active-class="transition transform duration-300 origin-top"
+            leave-to-class="scale-0"
           )
-            .popover.absolute(v-show="download.popover" v-if="download.mobile")
-              .popover-qrcode
-              .popover-actions
-                a(:href="download.mobile.find(t => t.sub_title === 'ios')" target="_blank") Apple Store
-      .flex-1.flex.items-center.justify-center
+            .popover.absolute.rounded-xl.p-5.bg-white.top-full.mt-5.flex.space-x-5.z-10.mt-5.cursor-default(v-show="download.popover" v-if="download.mobile")
+              .popover-qrcode.h-40.w-40
+                img(src="@/assets/images/download-nn.png" width="200" height="200")
+              .popover-actions.inline-flex.flex-col.items-center.justify-evenly
+                a.w-40.rounded.inline-flex.items-center.justify-evenly(:href="download.mobile.find(t => t.sub_title === 'ios').url" target="_blank")
+                  img(src="@/assets/images/apple@2x.png" width="15" height="18")
+                  | AppStore
+                  img(src="@/assets/images/download@2x.png" width="10" height="11")
+                a.w-40.rounded.inline-flex.items-center.justify-evenly(:href="download.mobile.find(t => t.sub_title === 'Android').url" target="_blank")
+                  img(src="@/assets/images/android@2x.png" width="15" height="18")
+                  | Android
+                  img(src="@/assets/images/download@2x.png" width="10" height="11")
+      .flex-1.flex.items-center.justify-center.z-0
         nuxt-link.prod.text-xl.inline-flex.items-center.justify-center(to="/download")
           | 产品介绍
           span.mx-4.text-gray-500 —
@@ -228,13 +236,14 @@ export default {
       this.download.pc = leigod.windows.download_url
     },
     showPopover(status = true) {
+      // console.log(status);
       if (!status) {
-        if (this.download.timer) clearTimeout(this.download.timer);
-        this.download.timer = setTimeout(() => {
+        return this.download.timer = setTimeout(() => {
           this.download.popover = false;
           this.download.timer = 0;
-        }, 1000);
+        }, 600);
       }
+      if (this.download.timer) clearTimeout(this.download.timer);
       this.download.popover = true;
     }
   }
@@ -326,6 +335,7 @@ main {
   min-height: 400px;
 
   .actions {
+    z-index: 1;
 
     .btn {
       &.pc {
@@ -361,6 +371,47 @@ main {
     border-radius: 20px;
     border: 2px solid #CEFFD0;
     overflow: hidden;
+
+
+    &:hover {
+      .animate-swing {
+        transform: translateX(5px);
+        animation: none;
+      }
+    }
+  }
+
+  .popover {
+    filter: drop-shadow(0 2px 4px rgba(white, 0.6));
+
+    &:hover {
+      filter: drop-shadow(0 4px 6px rgba(white, 0.6));
+
+    }
+
+    &::after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-top: 10px solid transparent;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid white;
+      position: absolute;
+      top: -20px;
+      left: calc(50% - 10px);
+    }
+
+    &-actions {
+      a {
+        color: #363636;
+        background: #F4F4F4;
+        border: 1px solid #c2c2c2;
+        height: 40px;
+        line-height: 40px;
+        font-size: 14px;
+      }
+    }
   }
 }
 </style>
