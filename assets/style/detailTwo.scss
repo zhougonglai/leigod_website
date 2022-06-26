@@ -1,0 +1,33 @@
+.detail-tow-container {
+  text-align: center;
+  height: 100%;
+  .title-txt {
+    font-size: 57px;
+    color: rgba(255, 255, 255, 1);
+  }
+
+  .subtitle-txt {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    font-size: 24px;
+    color: rgba(255, 255, 255, .9);
+  }
+
+  .img-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    img {
+      width: 200px;
+      height: 260px;
+    }
+
+    .img2 {
+      width: 650px;
+      height: 386px;
+    }
+  }
+
+  
+}
