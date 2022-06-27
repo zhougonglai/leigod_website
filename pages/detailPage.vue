@@ -1,7 +1,10 @@
 <template>
   <div class="detail-container">
     <div class="logo">
-      <a href="javascript:void(0)"><img src="~/assets/images/detailPageImg/logo.png" /></a>
+      <nuxt-link to="/">
+        <a href="javascript:void(0)"><img src="~/assets/images/detailPageImg/logo.png" /></a>
+      </nuxt-link>
+      
     </div>
 
     <div class="tab-block">
@@ -85,7 +88,6 @@
   </div>
 </template>
 <script>
-
 export default {
   name: 'detailPage',
   data() {
@@ -100,6 +102,10 @@ export default {
       activeIdx: 0,
       scrollFlag: true
     };
+  },
+
+  created () {
+    // this.getInfoList()
   },
 
   methods: {

@@ -16,7 +16,7 @@
         <img class="xian" src="~/assets/images/detailPageImg/xian.png" alt="">
         <div class="txt">雷神加速盒</div>
 
-        <div class="btn">立即购买</div>
+        <div class="btn" @click="goBuy">立即购买</div>
 
         <img class="img5" src="~/assets/images/detailPageImg/play-phone.png" alt="">
         <img class="bowen" src="~/assets/images/detailPageImg/bowen.png" alt="">
@@ -30,18 +30,30 @@
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex'
 export default {
-  props: {
-  },
   name: 'detailThree',
   data() {
     return {
+      jumpUrl: ''
     };
   },
+  created () {
+    this.getInfoList()
+  },
   methods: {
-    // test() {
-    //   return 0;
-    // }
+    ...mapActions(['getDownload']),
+
+    async getInfoList() {
+      let data = await this.getDownload({
+        group: 'boxgoumai'
+      });
+      if(data && data.length > 0) this.jumpUrl = data[0].url
+    },
+
+    goBuy() {
+      this.jumpUrl && window.open(this.jumpUrl)
+    }
   },
 };
 </script>

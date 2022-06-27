@@ -19,7 +19,7 @@
     </div>
 
     <div class="btn-row">
-      <div class="btn">免费试用</div>
+      <div class="btn" @click="down">全新PC8.0下载</div>
 
       <div class="icon-row">
         <div class="item">
@@ -43,6 +43,7 @@
 </template>
 <script>
 let timer = null
+import { mapActions } from 'vuex'
 export default {
   props: {
     activeIdx: {
@@ -64,16 +65,38 @@ export default {
   },
   data() {
     return {
-      imgSwitch: 1
+      imgSwitch: 1,
+      download: {
+        pc: '',
+        mobile: '',
+        popover: false,
+        timer: 0
+      }
     };
   },
+  created () {
+    this.getDownloadAct()
+  },
   methods: {
+    ...mapActions(['getDownload']),
     startTimer() {
       timer = setInterval(() => {
         if(this.imgSwitch === 1) return this.imgSwitch = 2
         if(this.imgSwitch === 2) return this.imgSwitch = 1
       }, 2000);
-    }
+    },
+    down() {
+      // window.open('https://www.leigod.com/download-win.html')
+      download.pc && window.open(download.pc)
+    },
+
+    async getDownloadAct() {
+      const { leigod } = await this.$axios.$get('/config.json', {
+        baseURL: process.env.BASE_URL
+      })
+      this.download.pc = leigod.windows.download_url
+      console.log('downUrl', this.download);
+    },
   },
   mounted () {
     this.startTimer()

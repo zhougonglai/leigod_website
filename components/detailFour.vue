@@ -7,25 +7,39 @@
     </div>
 
     <div class="btn-row">
-      <div class="btn1" v-if="btnFlag">立即参与</div>
+      <div class="btn1" v-if="btnFlag" @click="btnClick">立即参与</div>
       <div class="btn2" v-if="!btnFlag">敬请期待</div>
     </div>
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex'
 export default {
   props: {
   },
   name: 'detailFour',
   data() {
     return {
-      btnFlag: true
+      btnFlag: true,
+      jumpUrl: ''
     };
   },
+  created () {
+    this.getInfoList()
+  },
   methods: {
-    // test() {
-    //   return 0;
-    // }
+    ...mapActions(['getDownload']),
+
+    async getInfoList() {
+      let data = await this.getDownload({
+        group: 'fulicanyu'
+      });
+      if(data && data.length > 0) this.jumpUrl = data[0].url
+    },
+
+    btnClick() {
+      this.jumpUrl && window.open(this.jumpUrl)
+    }
   },
 };
 </script>
