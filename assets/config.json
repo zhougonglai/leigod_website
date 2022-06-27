@@ -1,0 +1,1026 @@
+{
+    "0": {
+        "register": {
+            "is_email": 1
+        }
+    },
+    "1": {
+        "register": {
+            "is_email": 0
+        }
+    },
+    "windows": {
+        "download_url": "//update.leigod.com/soft/win/8.0.0.0/LeiGodSetup.8.0.1.2.exe"
+    },
+    "mac": {
+        "download_url": ""
+    },
+    "head_default_img_url": [
+        "images/default_avatar.png",
+        "images/avatar_01.png",
+        "images/avatar_02.png",
+        "images/avatar_03.png",
+        "images/avatar_04.png",
+        "images/avatar_05.png",
+        "images/avatar_06.png",
+        "images/avatar_07.png",
+        "images/avatar_08.png",
+        "images/avatar_09.png",
+        "images/avatar_10.png",
+        "images/avatar_11.png",
+        "images/avatar_12.png",
+        "images/avatar_13.png",
+        "images/avatar_14.png",
+        "images/avatar_15.png",
+        "images/avatar_16.png"
+    ],
+    "down_platform": {
+        "360": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_360_nn.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "3601": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_3601.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "3602": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_3602.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "5636": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_5636.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "9891": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_9891.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "baidu": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_baidu_nn.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "baidu1": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_baidu1.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "baid2": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_baid2.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "sogou2": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_sogou2.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "bzwb": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_bzwb.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "sogou1": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_sogou1.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "sc002": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_sc002.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "youzu": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_youzu.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "aotian": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_aotian.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "lxgf": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_lxgf.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "kwyx": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_kwyx.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "PUB8": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_PUB8.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "yingzi": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_yingzi.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "pubg_zq": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_pubg_zq.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "guanwang_hd": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_guanwang_hd.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "pubg_kehuduan": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_pubg_kehuduan.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "xiao": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_xiao.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "nn_baidu": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_nn_baidu.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "nn_360": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_nn_360.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "nn_sougou": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_nn_sougou.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "bingchuan": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_bingchuan.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "nz_baidu": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_nz_baidu.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "nz_360": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_nz_360.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "nz_sougou": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_nz_sougou.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "wk05": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_wangka05.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "nn": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_nn.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "nn2": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_nn2.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "nz": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_nz.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "chinesegamer": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_chinesegamer.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "shengqu": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_shengqu.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "zhang": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_zhang.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "ka_cn": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_ka_cn.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "ldmnq": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_ldmnq.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "wywyx": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_wywyx.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "renrenys": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_renrenys.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "bijiaqi": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_bijiaqi.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "dashi": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_dashi.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "bazhuayu": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_bazhuayu.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "jfds": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_jfds.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "wbzz": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_wangbazengzhi.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "yy": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_YY144.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "ssgame": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_ssgame.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "pubgzbt": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_pubgzbt.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "gw_steam": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_gw_steam.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "lsdiannao": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_lsdiannao.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "huyazh": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_huyazh.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "loldk": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_loldk.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "tupian": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_tupian.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "XMT": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_XMT.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "guangyu": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_guangyu.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "youxia": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_youxia.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "NA1": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_NA1.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "zzd": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_zzd.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "FHYX": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_FHYX.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "ATWH": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_ATWH.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "SMZYW": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_SMZYW.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "NBA2K20": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_NBA2K20.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "guge265": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_guge265.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "NBA2K": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_NBA2K.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "LOL": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_LOL.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "APEX": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_APEX.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "SMZH": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_SMZH.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "JDQSB": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_JDQSB.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "WZZD3": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_WZZD3.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "yaofa": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_yaofa.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "yaofa1": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_yaofa1.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "yaofa2": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_yaofa2.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "yaofa3": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_yaofa3.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "yaofa4": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_yaofa4.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "yaofa5": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_yaofa5.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "kuaiba": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_kuaiba.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "TX": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_TX.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "cb": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_cb04.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "sogou": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_sogou.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "aipai": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_aipai.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "qudong08": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_qudong08.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "snkwy01": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_snkwy01.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "douxie": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_douxie.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "zuhaopu": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_zuhaopu.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "nantong1": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_nantong1.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "360ad": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_360-ad.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "2345nn2": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_2345nn2.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "guanwang": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/win/8.0.0.0/LeiGodSetup.8.0.1.2.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "stmbuy": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_stmbuy.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "3dm_25055": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_3dm_25055.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "3dm_40080": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_3dm_40080.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "3dm_274325": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_3dm_274325.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "3dm_326226": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_3dm_326226.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "3dm_756120": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_3dm_756120.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "3dm_down1": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_3dm_down1.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "3dm_zdyxz1": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_3dm_zdyxz1.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "3dm_zdyxz2": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_3dm_zdyxz2.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "3dm_zdyxz3": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_3dm_zdyxz3.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "banner": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_banner.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "ssjj": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_ssjj.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "tieba": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_tieba.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "tieba_apex": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_tieba_apex.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "tieba_pubglite": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_tieba_pubglite.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "tieba_taosha": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_tieba_taosha.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "tiebaxxl": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_tiebaxxl.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "youxia_download": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_youxia_download.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "ymxk-65080": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_ymxk-65080.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "ymxkshou-900350": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_ymxkshou-900350.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "baiduxxl": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_baiduxxl.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "pubgzty": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_pubgzty.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "huya": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_huya.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "baoxue": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_baoxue.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "mingxin": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_mingxin.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "txgdt": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_txgdt.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "youxun": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_youxun.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "yunci": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_yunci.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "xinhai": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_xinhai.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "bd": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_bd.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "cfhd": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_cfhd.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "WINRAR": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_WINRAR.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "hysx": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_hysx.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        },
+        "NARAKA": {
+            "windows": {
+                "download_url": "//update.leigod.com/soft/channel/LeiGodSetup_NARAKA.exe"
+            },
+            "mac": {
+                "download_url": ""
+            }
+        }
+    },
+    "pay": {
+        "switch": {
+            "is_show_zfb": 1,
+            "is_show_wx": 1,
+            "is_show_qq": 1,
+            "is_show_paypal": 0,
+            "is_show_ICBC": 0,
+            "is_show_ChinaPay": 0
+        },
+        "pay_type": 14
+    }
+}

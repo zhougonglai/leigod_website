@@ -10,11 +10,10 @@ main.flex.flex-col.items-center.h-screen
         leave-active-class="transition"
         leave-to-class="transform scale-0"
       )
-        nuxt-link.py-5(to="/" v-show="timeline.logo")
-          img(src="~/assets/images/page1/logo.png" alt="logo" width="148" height="41")
+        nuxt-link.flex.items-center(to="/" v-show="timeline.logo")
+          img(src="~/assets/images/page1/logo.png" alt="logo" width="183" height="52")
     .flex-1
     nav.inline-flex(ref="nav" v-show="timeline.nav")
-      button.nav-link.w-28.text-center.text-white.opacity-60(class="hover:opacity-100" v-if="timeline.target" @click="resetAnime") 重播
       nuxt-link.nav-link.w-28.text-white.opacity-60.inline-flex.items-center.justify-center(class="hover:opacity-100" active-class="opacity-100" to="/") 首页
       button.nav-link.w-28.text-center.text-white.opacity-60(class="hover:opacity-100") 加速盒
       button.nav-link.w-28.text-center.text-white.opacity-60(class="hover:opacity-100") 活动
@@ -22,7 +21,7 @@ main.flex.flex-col.items-center.h-screen
       button.nav-link.w-28.text-center.text-white.opacity-60(class="hover:opacity-100") 网吧商家版
       button.nav-link.w-28.text-center.text-white.opacity-60(class="hover:opacity-100") 游戏资讯
       .user-agent.text-white.px-20.inline-flex
-        button.login.relative.px-5.opacity-60(class="hover:opacity-100") 登录
+        button.login.relative.px-5.opacity-60(class="hover:opacity-100" @click="gotoLogin") 登录
         button.register.px-5.opacity-60(class="hover:opacity-100") 注册
         button.icon.px-5.flex.items-center.justify-center(@mouseenter="showTools()" @click="showTools()" @mouseleave="showTools(false)")
           img(v-if="logAgent.status" src="@/assets/images/page3/header-more_active.png")
@@ -43,18 +42,20 @@ main.flex.flex-col.items-center.h-screen
                 li.py-2.px-5.opacity-60(class="hover:opacity-100 hover:bg-gray-600") 关于雷神
 
   section.absolute.inset-0.flex.items-center.justify-center.flex-col.h-screen.w-screen.overflow-hidden
+    button.absolute.right-5.bottom-5.w-10.h-10.opacity-60.cursor-pointer.z-10(v-show="timeline.logo" class="hover:opacity-100" v-if="timeline.target" @click="resetAnime")
+      img(src="@/assets/images/play.svg")
     img.absolute.circle-1.animate-pulse(v-show="timeline.circle1" ref="circle1" src="@/assets/images/page1/circle-1.png" )
     img.absolute.circle-2.animate-pulse(v-show="timeline.circle2" ref="circle2" src="@/assets/images/page1/circle-2.png" style="animation-delay: .5s;")
-    #circle.absolute.inset-y-0.z-10(v-show="timeline.circle" ref="circle")
+    #circle.absolute.inset-y-0.z-10.flex.items-center.justify-center.h-screen.w-screen(v-show="timeline.circle" ref="circle")
       img.object-center.object-contain(src="@/assets/images/page1/apng/circle.png")
     #time-1.absolute(ref="title1" v-show="timeline.title1")
       img.t-1(src="@/assets/images/page1/logo-title.png")
     #bubble.rounded-full.absolute.w-40.h-40.z-10(v-show="timeline.bubble" ref='bubble')
     #bg.absolute.inset-x-0.bottom-0(v-show="timeline.bg" ref="bg")
-      img.bg(src="@/assets/images/page3/Apng/3–1_00000_iSpt.png")
+      img.bg.object-cover.w-full.h-full(src="@/assets/images/page3/Apng/3–1_00000_iSpt.png")
       img.light.absolute.animate-bouncing.top-0(src="@/assets/images/page3/light.png")
     #logo.flex-1.flex.flex-col.flex-col-reverse(v-show="timeline.logo" ref="logo")
-      img.logo-img(src="@/assets/images/page3/logo.png")
+      img.logo-img.transform.translate-x-20(src="@/assets/images/page3/logo.png")
     #time-2.my-10(ref="title2" v-show="timeline.title2")
       img.t-2(src="@/assets/images/page2/title2.png")
     #download.flex-1.flex.flex-col(ref="download" v-show="timeline.download")
@@ -62,7 +63,7 @@ main.flex.flex-col.items-center.h-screen
         a.btn.pc.bg-no-repeat.flex.items-center.justify-center.text-xl(rel="nofollow" v-if="download.pc" :href="download.pc" title="雷神加速器抢先版下载" download target="_blank")
           img.icon.mr-5(src="@/assets/images/page3/icon-1.png")
           | 全新PC8.0下载
-        button.btn.mobile.flex.items-center.justify-center.text-xl.relative(class="-ml-2" @mouseenter="showPopover(true)" @mouseleave="showPopover(false)")
+        button.btn.mobile.flex.items-center.justify-center.text-xl.relative(@mouseenter="showPopover(true)" @mouseleave="showPopover(false)")
           img.icon.mr-5(src="@/assets/images/page3/icon-2.png")
           | 移动版
           transition(
@@ -96,6 +97,7 @@ main.flex.flex-col.items-center.h-screen
 <script>
 import anime from 'animejs';
 import { mapActions } from 'vuex'
+import config from '@/assets/config.json';
 
 export default {
   name: 'IndexPage',
@@ -123,7 +125,8 @@ export default {
         mobile: '',
         popover: false,
         timer: 0
-      }
+      },
+      ads: []
     }
   },
   mounted() {
@@ -163,6 +166,7 @@ export default {
       const t2 = anime({
         targets: this.$refs.bubble,
         scale: [1, Math.max(Math.ceil(window.innerWidth / 120), Math.ceil(window.innerHeight / 120)) * 1.4],
+        opacity: [0.7, 1],
         easing: anime.penner.easeOutQuart,
         autoplay: false,
         begin: () => {
@@ -246,7 +250,6 @@ export default {
           delay: 600,
           complete: () => {
             this.timeline.title1 = false;
-            this.timeline.bubble = true;
           },
         })
         .add({
@@ -282,12 +285,13 @@ export default {
     },
     async getDownloadAct() {
       this.download.mobile = await this.getDownload({
-        group: 'nn-download'
+        group: 'nn-download,website_home_v8'
       });
-      const { leigod } = await this.$axios.$get('/config.json', {
-        baseURL: process.env.BASE_URL
-      })
-      this.download.pc = leigod.windows.download_url
+      console.log(config)
+      this.download.pc = config.windows.download_url
+    },
+    gotoLogin() {
+      history.pushState(null, '', `https://vip.leigod.com/login.html?callback=${encodeURIComponent(location.href)}&from=guanwang`)
     },
     showPopover(status = true) {
       // console.log(status);
@@ -325,6 +329,19 @@ main {
 
       #tools {
         background: #222;
+
+        &::after {
+          content: '';
+          width: 0;
+          height: 0;
+          border-top: 10px solid transparent;
+          border-left: 10px solid transparent;
+          border-right: 10px solid transparent;
+          border-bottom: 10px solid #222;
+          position: absolute;
+          top: -20px;
+          left: calc(50% - 10px);
+        }
       }
     }
   }
@@ -401,9 +418,7 @@ main {
 }
 
 
-#circle {
-  top: var(--top-param);
-}
+#circle {}
 
 #time-1 {
   left: calc(50% - 440px);
@@ -420,13 +435,16 @@ main {
 }
 
 #bg {
+  height: calc(50% - 100px);
+
   .light {
     left: calc(50% - 563px);
   }
 }
 
 #bubble {
-  box-shadow: 0 0 1.25vw 1.25vw rgba(white, 0.7) inset;
+  // box-shadow: 0 0 1.25vw 1.25vw rgba(white, 0.7) inset;
+  box-shadow: 0 0 1.25vw 1.25vw white inset;
   left: calc(50% - 80px);
   top: calc(50% - 80px + var(--top-param));
 }
@@ -439,42 +457,48 @@ main {
 
     .btn {
       &.pc {
-        background-image: url('@/assets/images/page3/btn-pc.png');
         width: 325px;
         height: 83px;
         transition: all .2s ease-in-out;
-        filter: drop-shadow(0px 0px 0px #27CB8E);
+        background: #27CB8E;
+        border-radius: 10px;
 
         &:hover {
-          filter: drop-shadow(0px 4px 6px #27CB8E);
+          background: #47d39f;
         }
       }
 
       &.mobile {
+        margin-left: 50px;
         background-image: url('@/assets/images/page3/btn-mobile.png');
         width: 325px;
         height: 83px;
         transition: all .2s ease-in-out;
-        filter: drop-shadow(0px 0px 0px #646464);
+        background: #646464;
+        border-radius: 10px;
 
         &:hover {
-          filter: drop-shadow(0px 4px 6px #646464);
+          background: #747474;
         }
       }
     }
   }
 
   .prod {
-    width: 220px;
-    height: 50px;
+    width: 246px;
+    height: 60px;
     color: #CEFFD0;
-    border-radius: 20px;
-    border: 2px solid #CEFFD0;
+    border-radius: 22px;
+    border: 2px solid #648679;
     overflow: hidden;
-    background: linear-gradient(180deg, #101010 0%, #2E2E2E 100%);
+    background: #393939;
+    transition: all .1s ease-in-out;
 
 
     &:hover {
+      color: #fff;
+      background: #555;
+
       .animate-swing {
         transform: translateX(5px);
         animation: none;
@@ -483,10 +507,10 @@ main {
   }
 
   .popover {
-    filter: drop-shadow(0 2px 4px rgba(white, 0.6));
+    filter: drop-shadow(0 0px 0px rgba(white, 0.6));
 
     &:hover {
-      filter: drop-shadow(0 4px 6px rgba(white, 0.6));
+      filter: drop-shadow(0 1px 2px rgba(white, 0.6));
 
     }
 
@@ -511,6 +535,12 @@ main {
         height: 40px;
         line-height: 40px;
         font-size: 14px;
+        transition: all .2s ease-in-out;
+
+        &:hover {
+          border-color: #ffd33e;
+          background: #fffcf0;
+        }
       }
     }
   }
