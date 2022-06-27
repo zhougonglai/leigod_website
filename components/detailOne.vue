@@ -3,8 +3,8 @@
   <div class="detail-one-container">
     <div class="title-txt">强劲性能  &nbsp;&nbsp;更快更稳</div>
     <div class="subtitle-txt">
-      <div class="txt1" :class="{'bgc-active-1':imgSwitch === 1}">双引擎</div>
-      <div class="txt2" :class="{'bgc-active-2':imgSwitch === 2}">AI智能节点</div>
+      <div class="txt1" :class="{'bgc-active-1':imgSwitch === 1}" @click="imgSwitchClick(1)">双引擎</div>
+      <div class="txt2" :class="{'bgc-active-2':imgSwitch === 2}" @click="imgSwitchClick(2)">AI智能节点</div>
     </div>
 
     <div class="img-row">
@@ -19,7 +19,10 @@
     </div>
 
     <div class="btn-row">
-      <div class="btn" @click="down">全新PC8.0下载</div>
+      <div class="btn" @click="down">
+        <img src="~/assets/images/page3/icon-1.png" alt="">
+        <span>全新PC8.0下载</span>
+      </div>
 
       <div class="icon-row">
         <div class="item">
@@ -42,7 +45,7 @@
   
 </template>
 <script>
-let timer = null
+// let timer = null
 import { mapActions } from 'vuex'
 export default {
   props: {
@@ -52,16 +55,16 @@ export default {
   },
   name: 'detailOne',
   watch: {
-    activeIdx: {
-      handler(val) {
-        if(val !== 0) {
-          clearInterval(timer)
-          this.imgSwitch = 1
-        } else {
-          this.startTimer()
-        }
-      }
-    }
+    // activeIdx: {
+    //   handler(val) {
+    //     if(val !== 0) {
+    //       clearInterval(timer)
+    //       this.imgSwitch = 1
+    //     } else {
+    //       this.startTimer()
+    //     }
+    //   }
+    // }
   },
   data() {
     return {
@@ -79,17 +82,28 @@ export default {
   },
   methods: {
     ...mapActions(['getDownload']),
-    startTimer() {
-      timer = setInterval(() => {
-        if(this.imgSwitch === 1) return this.imgSwitch = 2
-        if(this.imgSwitch === 2) return this.imgSwitch = 1
-      }, 2000);
+
+    // 手动切换
+    imgSwitchClick(val) {
+      if(this.imgSwitch == val) return false
+      this.imgSwitch = val
     },
+
+    // 自动切换
+    // startTimer() {
+    //   timer = setInterval(() => {
+    //     if(this.imgSwitch === 1) return this.imgSwitch = 2
+    //     if(this.imgSwitch === 2) return this.imgSwitch = 1
+    //   }, 2000);
+    // },
+
+    // 下载
     down() {
       // window.open('https://www.leigod.com/download-win.html')
       download.pc && window.open(download.pc)
     },
 
+    // 获取下载链接
     async getDownloadAct() {
       const { leigod } = await this.$axios.$get('/config.json', {
         baseURL: process.env.BASE_URL
@@ -98,8 +112,9 @@ export default {
       console.log('downUrl', this.download);
     },
   },
+
   mounted () {
-    this.startTimer()
+    // this.startTimer()
   }
 };
 </script>

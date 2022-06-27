@@ -17,8 +17,8 @@
         >
           <span>{{item.label}}</span>
         </li>
-        
       </ul>
+      <i class="xian" :class="{m0:activeIdx===0,m1:activeIdx===1,m2:activeIdx===2,m3:activeIdx===3,m4:activeIdx===4,}"></i>
     </div>
 
     <div class="dot-block">
@@ -100,7 +100,7 @@ export default {
         { id: 4, label: '厂商福利'},
       ],
       activeIdx: 0,
-      scrollFlag: true
+      scrollFlag: true,
     };
   },
 
@@ -185,7 +185,23 @@ export default {
     .tab-block {
       width: 40%;
       margin: auto;
-      height: 8%;
+      // height: 8%;
+      position: relative;
+      height: 78px;
+
+      .xian {
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 20%;
+        height: 100%;
+        border-bottom: 3px solid #27CB8E;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1) 100%);
+        transition: all .4s;
+      }
+
+     
+
       ul {
         list-style: none;
         display: flex;
@@ -202,10 +218,30 @@ export default {
         }
 
         .bt-show {
-          border-bottom: 3px solid #27CB8E;
-          background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1) 100%);
+          // border-bottom: 3px solid #27CB8E;
+          // background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1) 100%);
           color: rgba(3, 203, 142, 1);
         }
+      }
+
+      .m0 {
+        left: 0%;
+      }
+
+      .m1 {
+        left: 20%;
+      }
+
+      .m2 {
+        left: 40%;
+      }
+
+      .m3 {
+        left: 60%;
+      }
+
+      .m4 {
+        left: 80%;
       }
      
     }
@@ -275,8 +311,9 @@ export default {
       // left: 50%;
       // transform: translate(-50%, -50%);
       // height: 60%;
-      margin-top: 72px;
-      height: 92%;
+      // margin-top: 72px;
+      margin-top: 4%;
+      height: 87%;
 
       // &-item {
       //   opacity: 0;
@@ -296,10 +333,12 @@ export default {
   .Fade-enter,
   .Fade-leave-to {
     opacity: 0;
+    height: 0;
   }
   .Fade-enter-to,
   .Fade-leave {
     opacity: 1;
+    height: 100%;
   }
 
   .Fade-enter-active,

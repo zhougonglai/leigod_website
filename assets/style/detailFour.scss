@@ -4,6 +4,7 @@
   .title-txt {
     font-size: 57px;
     color: rgba(255, 255, 255, 1);
+    font-weight: 600;
   }
 
   .subtitle-txt {
@@ -18,9 +19,31 @@
     display: flex;
     justify-content: center;
 
+    align-items: center;
+    flex-direction: column;
+
     img {
-      width: 468px;
-      height: 476px;
+      // width: 468px;
+      // height: 476px;
+      width: 25%;
+    }
+
+    .btn1 {
+      padding: 7px 40px;
+      font-size: 18px;
+      color: rgba(255, 255, 255, 1);
+      background-color: rgba(39, 203, 142, 1);
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .btn2 {
+      padding: 7px 40px;
+      font-size: 18px;
+      color: rgba(255, 255, 255, .6);
+      background-color: rgba(103, 103, 103, 1);
+      border-radius: 8px;
+      cursor: pointer;
     }
     
   }

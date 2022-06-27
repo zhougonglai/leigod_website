@@ -4,6 +4,7 @@
   .title-txt {
     font-size: 57px;
     color: rgba(255, 255, 255, 1);
+    font-weight: 600;
   }
 
   .subtitle-txt {
@@ -17,15 +18,17 @@
   .img-row {
     display: flex;
     justify-content: center;
-    margin-top: 100px;
+    margin-top: 3%;
     img {
-      width: 200px;
-      height: 260px;
+      // width: 200px;
+      // height: 260px;
+      width: 13%;
     }
 
     .img2 {
-      width: 650px;
-      height: 386px;
+      width: 40%;
+      // width: 650px;
+      // height: 386px;
     }
   }
 
