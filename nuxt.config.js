@@ -3,7 +3,7 @@ import Forms from "@tailwindcss/forms";
 
 export default {
   // target: "static",
-  ssr: false,
+  // ssr: false,
   head: {
     title: "雷神加速器",
     meta: [
