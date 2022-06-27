@@ -45,7 +45,7 @@ main.flex.flex-col.items-center.h-screen
   section.absolute.inset-0.flex.items-center.justify-center.flex-col.h-screen.w-screen.overflow-hidden
     img.absolute.circle-1.animate-pulse(v-show="timeline.circle1" ref="circle1" src="@/assets/images/page1/circle-1.png" )
     img.absolute.circle-2.animate-pulse(v-show="timeline.circle2" ref="circle2" src="@/assets/images/page1/circle-2.png" style="animation-delay: .5s;")
-    #circle.absolute.inset-y-0.z-10(v-show="timeline.circle" ref="circle")
+    #circle.absolute.inset-y-0.z-10.flex.items-center.justify-center.h-screen.w-screen(v-show="timeline.circle" ref="circle")
       img.object-center.object-contain(src="@/assets/images/page1/apng/circle.png")
     #time-1.absolute(ref="title1" v-show="timeline.title1")
       img.t-1(src="@/assets/images/page1/logo-title.png")
@@ -62,7 +62,7 @@ main.flex.flex-col.items-center.h-screen
         a.btn.pc.bg-no-repeat.flex.items-center.justify-center.text-xl(rel="nofollow" v-if="download.pc" :href="download.pc" title="雷神加速器抢先版下载" download target="_blank")
           img.icon.mr-5(src="@/assets/images/page3/icon-1.png")
           | 全新PC8.0下载
-        button.btn.mobile.flex.items-center.justify-center.text-xl.relative(class="-ml-2" @mouseenter="showPopover(true)" @mouseleave="showPopover(false)")
+        button.btn.mobile.flex.items-center.justify-center.text-xl.relative(@mouseenter="showPopover(true)" @mouseleave="showPopover(false)")
           img.icon.mr-5(src="@/assets/images/page3/icon-2.png")
           | 移动版
           transition(
@@ -96,6 +96,7 @@ main.flex.flex-col.items-center.h-screen
 <script>
 import anime from 'animejs';
 import { mapActions } from 'vuex'
+import config from '@/assets/config.json';
 
 export default {
   name: 'IndexPage',
@@ -284,10 +285,9 @@ export default {
       this.download.mobile = await this.getDownload({
         group: 'nn-download'
       });
-      const { leigod } = await this.$axios.$get('/config.json', {
-        baseURL: process.env.BASE_URL
-      })
-      this.download.pc = leigod.windows.download_url
+      console.log(config)
+      // baseURL: process.env.BASE_URL
+      this.download.pc = config.windows.download_url
     },
     showPopover(status = true) {
       // console.log(status);
@@ -401,9 +401,7 @@ main {
 }
 
 
-#circle {
-  top: var(--top-param);
-}
+#circle {}
 
 #time-1 {
   left: calc(50% - 440px);
@@ -440,26 +438,28 @@ main {
 
     .btn {
       &.pc {
-        background-image: url('@/assets/images/page3/btn-pc.png');
         width: 325px;
         height: 83px;
         transition: all .2s ease-in-out;
-        filter: drop-shadow(0px 0px 0px #27CB8E);
+        background: #27CB8E;
+        border-radius: 10px;
 
         &:hover {
-          filter: drop-shadow(0px 4px 6px #27CB8E);
+          background: #47d39f;
         }
       }
 
       &.mobile {
+        margin-left: 50px;
         background-image: url('@/assets/images/page3/btn-mobile.png');
         width: 325px;
         height: 83px;
         transition: all .2s ease-in-out;
-        filter: drop-shadow(0px 0px 0px #646464);
+        background: #646464;
+        border-radius: 10px;
 
         &:hover {
-          filter: drop-shadow(0px 4px 6px #646464);
+          background: #747474;
         }
       }
     }
@@ -484,10 +484,10 @@ main {
   }
 
   .popover {
-    filter: drop-shadow(0 2px 4px rgba(white, 0.6));
+    filter: drop-shadow(0 0px 0px rgba(white, 0.6));
 
     &:hover {
-      filter: drop-shadow(0 4px 6px rgba(white, 0.6));
+      filter: drop-shadow(0 1px 2px rgba(white, 0.6));
 
     }
 
