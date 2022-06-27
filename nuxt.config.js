@@ -3,6 +3,7 @@ import Forms from "@tailwindcss/forms";
 
 export default {
   // target: "static",
+  target: "server",
   // ssr: false,
   head: {
     title: "雷神加速器",
@@ -56,5 +57,9 @@ export default {
         autoprefixer: {},
       },
     },
+  },
+  server: {
+    port: 3000, // default: 3000
+    host: "127.0.0.1", // default: localhost,
   },
 };

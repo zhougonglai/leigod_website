@@ -163,6 +163,7 @@ export default {
       const t2 = anime({
         targets: this.$refs.bubble,
         scale: [1, Math.max(Math.ceil(window.innerWidth / 120), Math.ceil(window.innerHeight / 120)) * 1.4],
+        opacity: [0.7, 1],
         easing: anime.penner.easeOutQuart,
         autoplay: false,
         begin: () => {
@@ -246,7 +247,6 @@ export default {
           delay: 600,
           complete: () => {
             this.timeline.title1 = false;
-            this.timeline.bubble = true;
           },
         })
         .add({
@@ -426,7 +426,8 @@ main {
 }
 
 #bubble {
-  box-shadow: 0 0 1.25vw 1.25vw rgba(white, 0.7) inset;
+  // box-shadow: 0 0 1.25vw 1.25vw rgba(white, 0.7) inset;
+  box-shadow: 0 0 1.25vw 1.25vw white inset;
   left: calc(50% - 80px);
   top: calc(50% - 80px + var(--top-param));
 }
