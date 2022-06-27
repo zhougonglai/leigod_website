@@ -1,6 +1,6 @@
 <template lang="pug">
-main.flex.flex-col.items-center.h-screen.overflow-hidden
-  header.container.flex.h-20.absolute.z-10
+main.flex.flex-col.items-center.h-screen
+  header.w-screen.flex.h-20.px-10.absolute.z-10
     nav.inline-flex
       transition(
         enter-class="transform scale-0"
@@ -14,13 +14,35 @@ main.flex.flex-col.items-center.h-screen.overflow-hidden
           img(src="~/assets/images/page1/logo.png" alt="logo" width="148" height="41")
     .flex-1
     nav.inline-flex(ref="nav" v-show="timeline.nav")
-      button.nav-link.w-32.text-center.px-5.text-white.opacity-60(class="hover:opacity-100" v-if="timeline.target" @click="resetAnime") 重播
-      nuxt-link.nav-link.w-32.text-white.opacity-60.inline-flex.items-center.justify-center(class="hover:opacity-100" active-class="opacity-100" to="/") 首页
-      button.nav-link.w-32.text-center.px-5.text-white.opacity-60(class="hover:opacity-100") 加速盒
-      button.nav-link.w-32.text-center.px-5.text-white.opacity-60(class="hover:opacity-100") 活动
-      button.nav-link.w-32.text-center.px-5.text-white.opacity-60(class="hover:opacity-100") 帮助中心
-      button.nav-link.w-32.text-center.px-5.text-white.opacity-60(class="hover:opacity-100") 网吧商家版
-  section.absolute.inset-0.flex.items-center.justify-center.flex-col.h-screen.w-screen
+      button.nav-link.w-28.text-center.text-white.opacity-60(class="hover:opacity-100" v-if="timeline.target" @click="resetAnime") 重播
+      nuxt-link.nav-link.w-28.text-white.opacity-60.inline-flex.items-center.justify-center(class="hover:opacity-100" active-class="opacity-100" to="/") 首页
+      button.nav-link.w-28.text-center.text-white.opacity-60(class="hover:opacity-100") 加速盒
+      button.nav-link.w-28.text-center.text-white.opacity-60(class="hover:opacity-100") 活动
+      button.nav-link.w-28.text-center.text-white.opacity-60(class="hover:opacity-100") 帮助中心
+      button.nav-link.w-28.text-center.text-white.opacity-60(class="hover:opacity-100") 网吧商家版
+      button.nav-link.w-28.text-center.text-white.opacity-60(class="hover:opacity-100") 游戏资讯
+      .user-agent.text-white.px-20.inline-flex
+        button.login.relative.px-5.opacity-60(class="hover:opacity-100") 登录
+        button.register.px-5.opacity-60(class="hover:opacity-100") 注册
+        button.icon.px-5.flex.items-center.justify-center(@mouseenter="showTools()" @click="showTools()" @mouseleave="showTools(false)")
+          img(v-if="logAgent.status" src="@/assets/images/page3/header-more_active.png")
+          img(v-else src="@/assets/images/page3/header-more.png")
+          transition(
+            enter-class="scale-0"
+            enter-active-class="transition transform duration-300 origin-top"
+            enter-to-class="scale-1"
+            leave-class=" scale-1"
+            leave-active-class="transition transform duration-300 origin-top"
+            leave-to-class="scale-0"
+          )
+            #tools.absolute.rounded-lg.py-2.top-full(v-show="logAgent.status")
+              ul
+                li.py-2.px-5.opacity-60(class="hover:opacity-100 hover:bg-gray-600") 充值时常
+                li.py-2.px-5.opacity-60(class="hover:opacity-100 hover:bg-gray-600") 雷神公益
+                li.py-2.px-5.opacity-60(class="hover:opacity-100 hover:bg-gray-600") 官方公告
+                li.py-2.px-5.opacity-60(class="hover:opacity-100 hover:bg-gray-600") 关于雷神
+
+  section.absolute.inset-0.flex.items-center.justify-center.flex-col.h-screen.w-screen.overflow-hidden
     img.absolute.circle-1.animate-pulse(v-show="timeline.circle1" ref="circle1" src="@/assets/images/page1/circle-1.png" )
     img.absolute.circle-2.animate-pulse(v-show="timeline.circle2" ref="circle2" src="@/assets/images/page1/circle-2.png" style="animation-delay: .5s;")
     #circle.absolute.inset-y-0.z-10(v-show="timeline.circle" ref="circle")
@@ -30,7 +52,7 @@ main.flex.flex-col.items-center.h-screen.overflow-hidden
     #bubble.rounded-full.absolute.w-40.h-40.z-10(v-show="timeline.bubble" ref='bubble')
     #bg.absolute.inset-x-0.bottom-0(v-show="timeline.bg" ref="bg")
       img.bg(src="@/assets/images/page3/Apng/3–1_00000_iSpt.png")
-      img.light.absolute.top-0.transform(src="@/assets/images/page3/light.png" class="left-1/2 -translate-x-1/2")
+      img.light.absolute.animate-bouncing.top-0(src="@/assets/images/page3/light.png")
     #logo.flex-1.flex.flex-col.flex-col-reverse(v-show="timeline.logo" ref="logo")
       img.logo-img(src="@/assets/images/page3/logo.png")
     #time-2.my-10(ref="title2" v-show="timeline.title2")
@@ -64,7 +86,7 @@ main.flex.flex-col.items-center.h-screen.overflow-hidden
                   | Android
                   img(src="@/assets/images/download@2x.png" width="10" height="11")
       .flex-1.flex.items-center.justify-center.z-0
-        nuxt-link.prod.text-xl.inline-flex.items-center.justify-center(to="/download")
+        nuxt-link.prod.text-xl.inline-flex.items-center.justify-center(to="/detailPage")
           | 产品介绍
           span.mx-4.text-gray-500 —
           img.ml-2.animate-swing(src="@/assets/images/page3/arrow-right.png")
@@ -91,6 +113,10 @@ export default {
         bg: false,
         download: false,
         target: '',
+      },
+      logAgent: {
+        status: false,
+        timer: 0
       },
       download: {
         pc: '',
@@ -120,6 +146,76 @@ export default {
       this.runAnime();
     },
     async runAnime() {
+
+      const t1 = anime({
+        targets: [this.$refs.circle, this.$refs.circle1, this.$refs.circle2],
+        opacity: [1, 0],
+        scale: [1, 0.7],
+        duration: 300,
+        autoplay: false,
+        complete: () => {
+          this.timeline.circle = false;
+          this.timeline.circle1 = false;
+          this.timeline.circle2 = false;
+        },
+      })
+
+      const t2 = anime({
+        targets: this.$refs.bubble,
+        scale: [1, Math.max(Math.ceil(window.innerWidth / 120), Math.ceil(window.innerHeight / 120)) * 1.4],
+        easing: anime.penner.easeOutQuart,
+        autoplay: false,
+        begin: () => {
+          this.timeline.bubble = true;
+        },
+        complete: () => {
+          this.timeline.bubble = false;
+        }
+      })
+
+      const t3 = anime({
+        targets: this.$refs.title2,
+        scale: [1, 0.725],
+        autoplay: false,
+      })
+
+      const t4 = anime({
+        targets: this.$refs.logo,
+        opacity: [0, 1],
+        translateY: [100, 0],
+        autoplay: false,
+        begin: () => {
+          this.timeline.logo = true;
+        }
+      })
+
+      const t5 = anime({
+        targets: this.$refs.nav.children,
+        translateY: [-100, 0],
+        delay: anime.stagger(100),
+        autoplay: false,
+        begin: () => {
+          this.timeline.nav = true;
+        }
+      })
+      const t6 = anime({
+        targets: this.$refs.download,
+        opacity: [0, 1],
+        translateY: [-100, 0],
+        autoplay: false,
+        begin: () => {
+          this.timeline.download = true
+        }
+      })
+      const t7 = anime({
+        targets: this.$refs.bg,
+        opacity: [0, 1],
+        autoplay: false,
+        begin: () => {
+          this.timeline.bg = true;
+        }
+      })
+
       this.timeline.target = anime.timeline({
         duration: 600,
         easing: anime.penner.easeInOutCubic
@@ -164,67 +260,25 @@ export default {
 
       await this.timeline.target.finished
 
-      anime({
-        targets: [this.$refs.circle, this.$refs.circle1, this.$refs.circle2],
-        opacity: [1, 0],
-        scale: [1, 0.7],
-        duration: 300,
-        complete: () => {
-          this.timeline.circle = false;
-          this.timeline.circle1 = false;
-          this.timeline.circle2 = false;
-        },
-      })
-
-      anime({
-        targets: this.$refs.bubble,
-        scale: [1, Math.max(Math.ceil(window.innerWidth / 120), Math.ceil(window.innerHeight / 120)) * 1.4],
-        duration: 1000,
-        easing: anime.penner.easeOutQuart,
-        begin: () => {
-          this.timeline.bubble = true;
-        },
-        complete: () => {
-          this.timeline.bubble = false;
-        }
-      })
-      anime({
-        targets: this.$refs.title2,
-        scale: [1, 0.725]
-      })
-      anime({
-        targets: this.$refs.logo,
-        opacity: [0, 1],
-        translateY: [100, 0],
-        begin: () => {
-          this.timeline.logo = true;
-        }
-      })
-      anime({
-        targets: this.$refs.nav.children,
-        translateY: [-100, 0],
-        delay: anime.stagger(100),
-        begin: () => {
-          this.timeline.nav = true;
-        }
-      })
-      anime({
-        targets: this.$refs.download,
-        opacity: [0, 1],
-        translateY: [-100, 0],
-        begin: () => {
-          this.timeline.download = true
-        }
-      })
-      anime({
-        targets: this.$refs.bg,
-        opacity: [0, 1],
-        begin: () => {
-          this.timeline.bg = true;
-        }
-      })
+      t1.play()
+      t2.play()
+      t3.play()
+      t4.play()
+      t5.play()
+      t6.play()
+      t7.play()
 
       console.log(this.timeline.target, this.$refs.nav);
+    },
+    showTools(status = true) {
+      if (!status) {
+        return this.logAgent.timer = setTimeout(() => {
+          this.logAgent.status = false;
+          this.logAgent.timer = 0;
+        }, 600)
+      }
+      if (this.logAgent.timer) clearTimeout(this.logAgent.timer);
+      this.logAgent.status = true;
     },
     async getDownloadAct() {
       this.download.mobile = await this.getDownload({
@@ -253,6 +307,27 @@ export default {
 main {
   --top-param: 0px;
   background: linear-gradient(180deg, #101010 0%, #2E2E2E 100%);
+
+  header {
+    .user-agent {
+      .login {
+        &::after {
+          content: '';
+          position: absolute;
+          top: calc(50% - 7px);
+          right: 0px;
+          opacity: 0.6;
+          background: white;
+          width: 1px;
+          height: 14px;
+        }
+      }
+
+      #tools {
+        background: #222;
+      }
+    }
+  }
 
   section {
     min-height: 900px;
@@ -288,12 +363,31 @@ main {
   }
 }
 
+@keyframes bouncing {
+
+  0%,
+  100% {
+    transform: scale(0.75);
+    transform-origin: top center;
+  }
+
+  50% {
+    transform: scale(1);
+    transform-origin: top center;
+  }
+}
+
+
 .animate-pulse {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 .animate-swing {
   animation: swing 1.6s linear infinite;
+}
+
+.animate-bouncing {
+  animation: bouncing 1.6s linear infinite;
 }
 
 .circle-1 {
@@ -323,6 +417,12 @@ main {
 #time-2 {
   // left: calc(50% - 598px);
   // top: max(calc(50% - 88px + var(--top-param)), 400px);
+}
+
+#bg {
+  .light {
+    left: calc(50% - 563px);
+  }
 }
 
 #bubble {
@@ -366,11 +466,12 @@ main {
 
   .prod {
     width: 220px;
-    height: 60px;
+    height: 50px;
     color: #CEFFD0;
     border-radius: 20px;
     border: 2px solid #CEFFD0;
     overflow: hidden;
+    background: linear-gradient(180deg, #101010 0%, #2E2E2E 100%);
 
 
     &:hover {
