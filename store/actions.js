@@ -5,4 +5,9 @@ export default {
     });
     return data;
   },
+  async getUserInfo({ commit }, body) {
+    const { data } = await this.$axios.$post("/api/user/info", body);
+    commit("SET_INFO", data);
+    return data;
+  },
 };

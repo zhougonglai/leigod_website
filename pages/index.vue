@@ -20,9 +20,12 @@ main.flex.flex-col.items-center.h-screen
       button.nav-link.w-28.text-center.text-white.opacity-60(class="hover:opacity-100") 帮助中心
       button.nav-link.w-28.text-center.text-white.opacity-60(class="hover:opacity-100") 网吧商家版
       button.nav-link.w-28.text-center.text-white.opacity-60(class="hover:opacity-100") 游戏资讯
-      .user-agent.text-white.px-20.inline-flex
-        button.login.relative.px-5.opacity-60(class="hover:opacity-100" @click="gotoLogin") 登录
-        button.register.px-5.opacity-60(class="hover:opacity-100") 注册
+      .user-agent.text-white.px-20.inline-flex(v-cloak)
+        template(v-if="info")
+          button.info(v-text="info.nickname || info.mobile")
+        template(v-else)
+          button.login.relative.px-5.opacity-60(class="hover:opacity-100" @click="gotoLogin") 登录
+          button.register.px-5.opacity-60(class="hover:opacity-100") 注册
         button.icon.px-5.flex.items-center.justify-center(@mouseenter="showTools()" @click="showTools()" @mouseleave="showTools(false)")
           img(v-if="logAgent.status" src="@/assets/images/page3/header-more_active.png")
           img(v-else src="@/assets/images/page3/header-more.png")
@@ -36,13 +39,13 @@ main.flex.flex-col.items-center.h-screen
           )
             #tools.absolute.rounded-lg.py-2.top-full(v-show="logAgent.status")
               ul
-                li.py-2.px-5.opacity-60(class="hover:opacity-100 hover:bg-gray-600") 充值时常
+                li.py-2.px-5.opacity-60(class="hover:opacity-100 hover:bg-gray-600") 充值时长
                 li.py-2.px-5.opacity-60(class="hover:opacity-100 hover:bg-gray-600") 雷神公益
                 li.py-2.px-5.opacity-60(class="hover:opacity-100 hover:bg-gray-600") 官方公告
                 li.py-2.px-5.opacity-60(class="hover:opacity-100 hover:bg-gray-600") 关于雷神
 
   section.absolute.inset-0.flex.items-center.justify-center.flex-col.h-screen.w-screen.overflow-hidden
-    button.absolute.right-5.bottom-5.w-10.h-10.opacity-60.cursor-pointer.z-10(v-show="timeline.logo" class="hover:opacity-100" v-if="timeline.target" @click="resetAnime")
+    button.absolute.right-5.bottom-5.w-6.h-6.opacity-60.cursor-pointer.z-10(v-show="timeline.logo" class="hover:opacity-100" v-if="timeline.target" @click="resetAnime")
       img(src="@/assets/images/play.svg")
     img.absolute.circle-1.animate-pulse(v-show="timeline.circle1" ref="circle1" src="@/assets/images/page1/circle-1.png" )
     img.absolute.circle-2.animate-pulse(v-show="timeline.circle2" ref="circle2" src="@/assets/images/page1/circle-2.png" style="animation-delay: .5s;")
@@ -58,7 +61,7 @@ main.flex.flex-col.items-center.h-screen
       img.logo-img.transform.translate-x-20(src="@/assets/images/page3/logo.png")
     #time-2.my-10(ref="title2" v-show="timeline.title2")
       img.t-2(src="@/assets/images/page2/title2.png")
-    #download.flex-1.flex.flex-col(ref="download" v-show="timeline.download")
+    #download.flex-1.flex.flex-col.mt-10.w-full.items-center(ref="download" v-show="timeline.download")
       .actions.flex.text-white
         a.btn.pc.bg-no-repeat.flex.items-center.justify-center.text-xl(rel="nofollow" v-if="download.pc" :href="download.pc" title="雷神加速器抢先版下载" download target="_blank")
           img.icon.mr-5(src="@/assets/images/page3/icon-1.png")
@@ -78,11 +81,11 @@ main.flex.flex-col.items-center.h-screen
               .popover-qrcode.h-40.w-40
                 img(src="@/assets/images/download-nn.png" width="200" height="200")
               .popover-actions.inline-flex.flex-col.items-center.justify-evenly
-                a.w-40.rounded.inline-flex.items-center.justify-evenly(:href="download.mobile.find(t => t.sub_title === 'ios').url" target="_blank")
+                a.w-40.rounded.inline-flex.items-center.justify-evenly(:href="download.ios.url" target="_blank")
                   img(src="@/assets/images/apple@2x.png" width="15" height="18")
                   | AppStore
                   img(src="@/assets/images/download@2x.png" width="10" height="11")
-                a.w-40.rounded.inline-flex.items-center.justify-evenly(:href="download.mobile.find(t => t.sub_title === 'Android').url" target="_blank")
+                a.w-40.rounded.inline-flex.items-center.justify-evenly(:href="download.android.url" target="_blank")
                   img(src="@/assets/images/android@2x.png" width="15" height="18")
                   | Android
                   img(src="@/assets/images/download@2x.png" width="10" height="11")
@@ -91,13 +94,18 @@ main.flex.flex-col.items-center.h-screen
           | 产品介绍
           span.mx-4.text-gray-500 —
           img.ml-2.animate-swing(src="@/assets/images/page3/arrow-right.png")
+      .ad.absolute.left-20(v-if="ads.left")
+        img(:src="$root.IMG_URL + ads.left.img_url")
+      .ad.absolute.right-20(v-if="ads.right")
+        img(:src="$root.IMG_URL + ads.right.img_url")
 
 </template>
 
 <script>
 import anime from 'animejs';
-import { mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import config from '@/assets/config.json';
+import { omit } from 'lodash'
 
 export default {
   name: 'IndexPage',
@@ -122,19 +130,38 @@ export default {
       },
       download: {
         pc: '',
-        mobile: '',
+        ios: '',
+        android: '',
         popover: false,
         timer: 0
       },
-      ads: []
+      ads: {
+        left: '',
+        right: ''
+      }
     }
   },
-  mounted() {
+  computed: {
+    ...mapState(['info'])
+  },
+  async mounted() {
+    this.userInfoSync();
     this.runAnime();
     this.getDownloadAct();
   },
   methods: {
-    ...mapActions(['getDownload']),
+    ...mapActions(['getDownload', 'getUserInfo']),
+    async userInfoSync() {
+      if (this.$route.query.account_token) {
+        sessionStorage.account_token = this.$route.query.account_token;
+        await this.getUserInfo(this.$route.query)
+        const query = omit(this.$route.query, 'account_token');
+        return this.$router.replace({ path: '/', query })
+      }
+      if (sessionStorage.account_token) {
+        await this.getUserInfo({ account_token: sessionStorage.account_token })
+      }
+    },
     resetAnime() {
       this.timeline.circle = false;
       this.timeline.circle1 = false;
@@ -284,14 +311,19 @@ export default {
       this.logAgent.status = true;
     },
     async getDownloadAct() {
-      this.download.mobile = await this.getDownload({
+      const ads = await this.getDownload({
         group: 'nn-download,website_home_v8'
       });
-      console.log(config)
+
+      this.download.ios = ads.find(t => t.sub_title === 'ios')
+      this.download.android = ads.find(t => t.sub_title === 'Android')
+      this.ads.left = ads.find(t => t.group === 'website_home_v8')
+      this.ads.right = ads.findLast(t => t.group === 'website_home_v8')
       this.download.pc = config.windows.download_url
     },
     gotoLogin() {
-      history.pushState(null, '', `https://vip.leigod.com/login.html?callback=${encodeURIComponent(location.href)}&from=guanwang`)
+      console.log(process.env.VIP_URL)
+      location.href = `${process.env.VIP_URL}/login.html?callback=${encodeURIComponent(location.href)}&from=guanwang`;
     },
     showPopover(status = true) {
       // console.log(status);

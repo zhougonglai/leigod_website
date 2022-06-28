@@ -21,6 +21,7 @@ export default {
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
   },
   env: {
+    VIP_URL: process.env.VIP_URL,
     BASE_URL: process.env.BASE_URL,
     API_URL: process.env.API_URL,
     IMG_URL: process.env.IMG_URL,

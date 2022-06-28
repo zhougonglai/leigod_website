@@ -10,6 +10,10 @@ export default {
       dark: true
     }
   },
+  created() {
+    this.$root.FILE_URL = process.env.FILE_URL
+    this.$root.IMG_URL = process.env.IMG_URL
+  },
   mounted() {
     document.documentElement.classList.add('dark');
   },
