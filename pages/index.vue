@@ -15,17 +15,17 @@ main.flex.flex-col.items-center.h-screen
     .flex-1
     nav.inline-flex(ref="nav" v-show="timeline.nav")
       nuxt-link.nav-link.w-28.text-white.opacity-60.inline-flex.items-center.justify-center(class="hover:opacity-100" active-class="opacity-100" to="/") 首页
-      button.nav-link.w-28.text-center.text-white.opacity-60(class="hover:opacity-100") 加速盒
-      button.nav-link.w-28.text-center.text-white.opacity-60(class="hover:opacity-100") 活动
-      button.nav-link.w-28.text-center.text-white.opacity-60(class="hover:opacity-100") 帮助中心
-      button.nav-link.w-28.text-center.text-white.opacity-60(class="hover:opacity-100") 网吧商家版
-      button.nav-link.w-28.text-center.text-white.opacity-60(class="hover:opacity-100") 游戏资讯
+      a.nav-link.w-28.text-center.text-white.opacity-60.inline-flex.items-center.justify-center(class="hover:opacity-100" href="https://leixism.tmall.com/shop/view_shop.htm?spm=a230r.7195193.1997079397.2.698769a4Th9IPa" target="_blank") 加速盒
+      a.nav-link.w-28.text-center.text-white.opacity-60.inline-flex.items-center.justify-center(class="hover:opacity-100" href="/activity.html") 活动
+      a.nav-link.w-28.text-center.text-white.opacity-60.inline-flex.items-center.justify-center(class="hover:opacity-100" href="/help.html") 帮助中心
+      a.nav-link.w-28.text-center.text-white.opacity-60.inline-flex.items-center.justify-center(class="hover:opacity-100" href="https://nb.leigod.com/" target="_blank") 网吧商家版
+      a.nav-link.w-28.text-center.text-white.opacity-60.inline-flex.items-center.justify-center(class="hover:opacity-100" href="/news.html") 游戏资讯
       .user-agent.text-white.px-20.inline-flex(v-cloak)
         template(v-if="info")
-          button.info(v-text="info.nickname || info.mobile")
+          button.info.px-5.opacity-60(v-text="info.nickname || info.mobile" class="hover:opacity-100")
         template(v-else)
           button.login.relative.px-5.opacity-60(class="hover:opacity-100" @click="gotoLogin") 登录
-          button.register.px-5.opacity-60(class="hover:opacity-100") 注册
+          button.register.px-5.opacity-60(class="hover:opacity-100" @click="gotoRegister") 注册
         button.icon.px-5.flex.items-center.justify-center(@mouseenter="showTools()" @click="showTools()" @mouseleave="showTools(false)")
           img(v-if="logAgent.status" src="@/assets/images/page3/header-more_active.png")
           img(v-else src="@/assets/images/page3/header-more.png")
@@ -39,10 +39,14 @@ main.flex.flex-col.items-center.h-screen
           )
             #tools.absolute.rounded-lg.py-2.top-full(v-show="logAgent.status")
               ul
-                li.py-2.px-5.opacity-60(class="hover:opacity-100 hover:bg-gray-600") 充值时长
-                li.py-2.px-5.opacity-60(class="hover:opacity-100 hover:bg-gray-600") 雷神公益
-                li.py-2.px-5.opacity-60(class="hover:opacity-100 hover:bg-gray-600") 官方公告
-                li.py-2.px-5.opacity-60(class="hover:opacity-100 hover:bg-gray-600") 关于雷神
+                li.py-2.px-5.opacity-60(class="hover:opacity-100 hover:bg-gray-600")
+                  a.inline-flex(href="/recharge.html") 充值时长
+                li.py-2.px-5.opacity-60(class="hover:opacity-100 hover:bg-gray-600")
+                  a.inline-flex(href="https://gongyi.leigod.com/" target="_blank") 雷神公益
+                li.py-2.px-5.opacity-60(class="hover:opacity-100 hover:bg-gray-600")
+                  a.inline-flex(href="/gonggao.html") 官方公告
+                li.py-2.px-5.opacity-60(class="hover:opacity-100 hover:bg-gray-600")
+                  a.inline-flex(href="/help/about.html" target="_blank") 关于雷神
 
   section.absolute.inset-0.flex.items-center.justify-center.flex-col.h-screen.w-screen.overflow-hidden
     button.absolute.right-5.bottom-5.w-6.h-6.opacity-60.cursor-pointer.z-10(v-show="timeline.logo" class="hover:opacity-100" v-if="timeline.target" @click="resetAnime")
@@ -66,7 +70,7 @@ main.flex.flex-col.items-center.h-screen
         a.btn.pc.bg-no-repeat.flex.items-center.justify-center.text-xl(rel="nofollow" v-if="download.pc" :href="download.pc" title="雷神加速器抢先版下载" download target="_blank")
           img.icon.mr-5(src="@/assets/images/page3/icon-1.png")
           | 全新PC8.0下载
-        button.btn.mobile.flex.items-center.justify-center.text-xl.relative(@mouseenter="showPopover(true)" @mouseleave="showPopover(false)")
+        button.btn.mobile.flex.items-center.justify-center.text-xl.relative(@mouseenter="showPopover(true)" @click="showPopover(true)" @mouseleave="showPopover(false)")
           img.icon.mr-5(src="@/assets/images/page3/icon-2.png")
           | 移动版
           transition(
@@ -77,7 +81,7 @@ main.flex.flex-col.items-center.h-screen
             leave-active-class="transition transform duration-300 origin-top"
             leave-to-class="scale-0"
           )
-            .popover.absolute.rounded-xl.p-5.bg-white.top-full.mt-5.flex.space-x-5.z-10.mt-5.cursor-default(v-show="download.popover" v-if="download.mobile")
+            .popover.absolute.rounded-xl.p-5.bg-white.top-full.mt-5.flex.space-x-5.z-10.mt-5.cursor-default(v-show="download.popover" v-if="download.ios || download.android")
               .popover-qrcode.h-40.w-40
                 img(src="@/assets/images/download-nn.png" width="200" height="200")
               .popover-actions.inline-flex.flex-col.items-center.justify-evenly
@@ -94,9 +98,9 @@ main.flex.flex-col.items-center.h-screen
           | 产品介绍
           span.mx-4.text-gray-500 —
           img.ml-2.animate-swing(src="@/assets/images/page3/arrow-right.png")
-      .ad.absolute.left-20(v-if="ads.left")
+      .ad.absolute.left(v-if="ads.left")
         img(:src="$root.IMG_URL + ads.left.img_url")
-      .ad.absolute.right-20(v-if="ads.right")
+      .ad.absolute.right(v-if="ads.right")
         img(:src="$root.IMG_URL + ads.right.img_url")
 
 </template>
@@ -322,8 +326,10 @@ export default {
       this.download.pc = config.windows.download_url
     },
     gotoLogin() {
-      console.log(process.env.VIP_URL)
-      location.href = `${process.env.VIP_URL}/login.html?callback=${encodeURIComponent(location.href)}&from=guanwang`;
+      location.href = `${process.env.VIP_URL}/login.html?callback=${encodeURIComponent(location.href)}`;
+    },
+    gotoRegister() {
+      location.href = `${process.env.VIP_URL}/register.html?callback=${encodeURIComponent(location.href)}`;
     },
     showPopover(status = true) {
       // console.log(status);
@@ -574,6 +580,16 @@ main {
           background: #fffcf0;
         }
       }
+    }
+  }
+
+  .ad {
+    &.left {
+      left: 5%;
+    }
+
+    &.right {
+      right: 5%;
     }
   }
 }
